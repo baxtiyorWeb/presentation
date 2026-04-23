@@ -26,8 +26,6 @@ export default function HeroSection() {
   const btnsRef = useRef(null)
   const statsRef = useRef(null)
   const visualRef = useRef(null)
-  const orbitsRef = useRef([])
-  const bubblesRef = useRef([])
   const aboutCardsRef = useRef([])
   const statNumsRef = useRef([])
   const canvasRef = useRef(null)
@@ -85,23 +83,23 @@ export default function HeroSection() {
     const ctx = gsap.context(() => {
       // Hero entrance
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-      tl.fromTo(badgeRef.current, { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: .8 })
+      tl.fromTo(badgeRef.current, { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: .9 })
         .fromTo(titleRef.current.querySelectorAll('.hero-line'),
           { y: 80, opacity: 0, skewY: 4 },
-          { y: 0, opacity: 1, skewY: 0, duration: 1, stagger: .12 }, '-=.4')
-        .fromTo(subRef.current, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .8 }, '-=.5')
-        .fromTo(btnsRef.current, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: .7 }, '-=.4')
+          { y: 0, opacity: 1, skewY: 0, duration: 1.1, stagger: .14 }, '-=.4')
+        .fromTo(subRef.current, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .9 }, '-=.5')
+        .fromTo(btnsRef.current, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: .8 }, '-=.4')
         .fromTo(statsRef.current.querySelectorAll('.stat-item'),
           { y: 20, opacity: 0 },
-          { y: 0, opacity: 1, duration: .6, stagger: .1 }, '-=.3')
-        .fromTo(visualRef.current, { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 1 }, '-=1.2')
+          { y: 0, opacity: 1, duration: .7, stagger: .12 }, '-=.3')
+        .fromTo(visualRef.current, { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 1.2 }, '-=1.2')
 
       // Counter animation
       statNumsRef.current.forEach((el, i) => {
         if (!el) return
         const target = parseInt(STATS[i].num)
         gsap.to({ val: 0 }, {
-          val: target, duration: 2, ease: 'power2.out', delay: .8 + i * .15,
+          val: target, duration: 2.4, ease: 'power2.out', delay: 1 + i * .15,
           onUpdate() { el.textContent = Math.floor(this.targets()[0].val) }
         })
       })
@@ -117,30 +115,30 @@ export default function HeroSection() {
       })
 
       // Floating orbits (continuous)
-      gsap.to('.orbit-1', { rotation: 360, duration: 14, repeat: -1, ease: 'none', transformOrigin: 'center' })
-      gsap.to('.orbit-2', { rotation: -360, duration: 9, repeat: -1, ease: 'none', transformOrigin: 'center' })
-      gsap.to('.orbit-3', { rotation: 360, duration: 5, repeat: -1, ease: 'none', transformOrigin: 'center' })
+      gsap.to('.orbit-1', { rotation: 360, duration: 16, repeat: -1, ease: 'none', transformOrigin: 'center' })
+      gsap.to('.orbit-2', { rotation: -360, duration: 11, repeat: -1, ease: 'none', transformOrigin: 'center' })
+      gsap.to('.orbit-3', { rotation: 360, duration: 7, repeat: -1, ease: 'none', transformOrigin: 'center' })
       gsap.to('.center-hex', {
-        y: -14, duration: 4, yoyo: true, repeat: -1, ease: 'sine.inOut'
+        y: -16, duration: 4, yoyo: true, repeat: -1, ease: 'sine.inOut'
       })
       document.querySelectorAll('.tb').forEach((tb, i) => {
-        gsap.to(tb, { y: -10, duration: 3.5 + i * .3, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: i * .4 })
+        gsap.to(tb, { y: -10, duration: 3.8 + i * .3, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: i * .4 })
       })
 
       // About cards
       aboutCardsRef.current.forEach((el, i) => {
         if (!el) return
         gsap.fromTo(el,
-          { y: 60, opacity: 0 },
+          { y: 70, opacity: 0, scale: 0.92 },
           {
-            y: 0, opacity: 1, duration: .8, delay: i * .12,
-            scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
+            y: 0, opacity: 1, scale: 1, duration: .9, delay: i * .14,
+            scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
           })
       })
 
       // About section parallax
       gsap.to('.about-left', {
-        y: -40,
+        y: -50,
         scrollTrigger: { trigger: '#about', start: 'top bottom', end: 'bottom top', scrub: 1 }
       })
 
@@ -154,7 +152,7 @@ export default function HeroSection() {
     const r = el.getBoundingClientRect()
     const x = (e.clientX - r.left) / r.width - .5
     const y = (e.clientY - r.top) / r.height - .5
-    gsap.to(el, { rotationY: x * 16, rotationX: -y * 12, scale: 1.03, duration: .4, ease: 'power2.out', transformPerspective: 900 })
+    gsap.to(el, { rotationY: x * 18, rotationX: -y * 13, scale: 1.05, duration: .4, ease: 'power2.out', transformPerspective: 1000 })
   }
   const resetTilt = (el) => {
     gsap.to(el, { rotationY: 0, rotationX: 0, scale: 1, duration: .5, ease: 'power2.out' })
@@ -169,7 +167,7 @@ export default function HeroSection() {
       <section id="hero" style={styles.hero}>
         {/* ambient orbs */}
         <div style={{ ...styles.ambOrb, width: 600, height: 600, background: 'radial-gradient(#00C9B155,transparent)', top: -150, left: -150 }} />
-        <div style={{ ...styles.ambOrb, width: 400, height: 400, background: 'radial-gradient(#0066ff44,transparent)', bottom: -80, right: -80 }} />
+        <div style={{ ...styles.ambOrb, width: 500, height: 500, background: 'radial-gradient(#0066ff44,transparent)', bottom: -100, right: -80 }} />
 
         <div className="hero-content" style={styles.heroContent}>
           {/* Badge */}
@@ -187,8 +185,8 @@ export default function HeroSection() {
               WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'
             }}>IT &amp; BIZNES</span>
             <span className="hero-line" style={{
-              display: 'block', color: 'rgba(255,255,255,.65)',
-              fontSize: '.52em', marginTop: 6, letterSpacing: 5
+              display: 'block', color: 'rgba(255,255,255,.7)',
+              fontSize: '.5em', marginTop: 8, letterSpacing: '3px'
             }}>AKADEMIYASI</span>
           </h1>
 
@@ -297,7 +295,6 @@ export default function HeroSection() {
   )
 }
 
-/* ── Tech bubble positions ── */
 const tbPos = [
   { top: 20, right: 20 },
   { top: 20, left: 20 },
@@ -307,59 +304,58 @@ const tbPos = [
   { top: '50%', left: 8, transform: 'translateY(-50%)' },
 ]
 
-/* ── STYLES ── */
 const styles = {
   hero: {
     minHeight: '100vh',
     display: 'flex',
     alignItems: 'center',
-    padding: '130px 56px 80px',
-    background: 'radial-gradient(ellipse 80% 60% at 60% 40%, rgba(0,201,177,.06) 0%, transparent 70%)',
-    gap: 40,
+    padding: '140px 56px 80px',
+    background: 'radial-gradient(ellipse 80% 60% at 60% 40%, rgba(0,201,177,.08) 0%, transparent 70%)',
+    gap: 48,
     overflow: 'hidden',
   },
-  heroContent: { flex: 1, maxWidth: 620, zIndex: 2 },
+  heroContent: { flex: 1, maxWidth: 650, zIndex: 2 },
   badge: {
-    display: 'inline-flex', alignItems: 'center', gap: 8,
-    background: 'rgba(0,201,177,.08)', border: '1px solid rgba(0,201,177,.35)',
-    padding: '7px 18px', borderRadius: 40, fontSize: 11, letterSpacing: 2,
+    display: 'inline-flex', alignItems: 'center', gap: 10,
+    background: 'rgba(0,201,177,.1)', border: '1px solid rgba(0,201,177,.35)',
+    padding: '8px 20px', borderRadius: 40, fontSize: '12px', letterSpacing: '1.5px',
     color: '#00C9B1', marginBottom: 32, textTransform: 'uppercase',
-    fontFamily: 'Rajdhani', fontWeight: 700,
+    fontFamily: 'Rajdhani, sans-serif', fontWeight: 700,
   },
   badgeDot: {
-    width: 7, height: 7, background: '#00C9B1', borderRadius: '50%',
-    display: 'inline-block', boxShadow: '0 0 8px #00C9B1',
-    animation: 'blink 1.4s ease infinite',
+    width: 8, height: 8, background: '#00C9B1', borderRadius: '50%',
+    display: 'inline-block', boxShadow: '0 0 10px #00C9B1',
+    animation: 'pulse 1.6s ease infinite',
   },
   heroTitle: {
     fontFamily: 'Orbitron, monospace',
-    fontSize: 'clamp(38px,5.5vw,76px)',
-    fontWeight: 900, lineHeight: 1.0, marginBottom: 28,
+    fontSize: 'clamp(40px,6vw,80px)',
+    fontWeight: 900, lineHeight: 1.0, marginBottom: 32,
   },
   heroSub: {
-    color: '#6da9c8', fontSize: 16, lineHeight: 1.75, marginBottom: 40, maxWidth: 500,
+    color: '#6da9c8', fontSize: '17px', lineHeight: 1.8, marginBottom: 44, maxWidth: 520, fontFamily: 'Rajdhani, sans-serif', fontWeight: 500,
   },
-  heroBtns: { display: 'flex', gap: 14, flexWrap: 'wrap', marginBottom: 56 },
+  heroBtns: { display: 'flex', gap: 16, flexWrap: 'wrap', marginBottom: 64 },
   btnP: {
-    padding: '14px 34px', background: 'linear-gradient(135deg,#00C9B1,#008F7A)',
-    border: 'none', borderRadius: 8, color: '#020b18',
-    fontFamily: 'Orbitron, monospace', fontSize: 12, fontWeight: 700, letterSpacing: 1,
+    padding: '14px 36px', background: 'linear-gradient(135deg,#00C9B1,#008F7A)',
+    border: 'none', borderRadius: 10, color: '#020b18',
+    fontFamily: 'Orbitron, monospace', fontSize: '13px', fontWeight: 700, letterSpacing: '1.5px',
     cursor: 'pointer', textDecoration: 'none', display: 'inline-block',
-    boxShadow: '0 4px 28px rgba(0,201,177,.4)', transition: 'all .3s',
+    boxShadow: '0 6px 28px rgba(0,201,177,.4)', transition: 'all .3s',
   },
   btnS: {
-    padding: '14px 34px', background: 'transparent',
-    border: '1.5px solid rgba(0,201,177,.45)', borderRadius: 8, color: '#00C9B1',
-    fontFamily: 'Orbitron, monospace', fontSize: 12, fontWeight: 700, letterSpacing: 1,
+    padding: '14px 36px', background: 'transparent',
+    border: '1.5px solid rgba(0,201,177,.5)', borderRadius: 10, color: '#00C9B1',
+    fontFamily: 'Orbitron, monospace', fontSize: '13px', fontWeight: 700, letterSpacing: '1.5px',
     cursor: 'pointer', textDecoration: 'none', display: 'inline-block', transition: 'all .3s',
   },
-  heroStats: { display: 'flex', gap: 44, flexWrap: 'wrap' },
+  heroStats: { display: 'flex', gap: 52, flexWrap: 'wrap' },
   statNum: {
-    fontFamily: 'Orbitron, monospace', fontSize: 40, fontWeight: 900, lineHeight: 1,
+    fontFamily: 'Orbitron, monospace', fontSize: '44px', fontWeight: 900, lineHeight: 1,
     background: 'linear-gradient(90deg,#00C9B1,#00E5FF)',
     WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
   },
-  statLabel: { fontSize: 11, color: '#6da9c8', letterSpacing: 1, marginTop: 4, textTransform: 'uppercase' },
+  statLabel: { fontSize: '12px', color: '#6da9c8', letterSpacing: '1.5px', marginTop: 6, textTransform: 'uppercase', fontFamily: 'Rajdhani, sans-serif', fontWeight: 600 },
   heroVisual: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' },
   hexScene: { width: 420, height: 420, position: 'relative' },
   orbit1: {
@@ -378,45 +374,45 @@ const styles = {
     borderRadius: '50%', border: '1px solid rgba(0,201,177,.4)',
   },
   tb: {
-    position: 'absolute', width: 54, height: 54,
-    background: 'rgba(5,20,45,.9)', border: '1px solid rgba(0,201,177,.3)',
-    borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center',
-    fontSize: 11, fontFamily: 'Orbitron, monospace', fontWeight: 700,
-    color: '#00C9B1', letterSpacing: .5,
+    position: 'absolute', width: 56, height: 56,
+    background: 'rgba(5,20,45,.95)', border: '1px solid rgba(0,201,177,.3)',
+    borderRadius: 14, display: 'flex', alignItems: 'center', justifyContent: 'center',
+    fontSize: '12px', fontFamily: 'Orbitron, monospace', fontWeight: 700,
+    color: '#00C9B1', letterSpacing: 1,
   },
   centerHex: {
     position: 'absolute', top: '50%', left: '50%',
     transform: 'translate(-50%,-50%)',
-    filter: 'drop-shadow(0 0 30px rgba(0,201,177,.4))',
+    filter: 'drop-shadow(0 0 32px rgba(0,201,177,.4))',
   },
   about: {
-    padding: '120px 56px',
+    padding: '140px 56px',
     background: 'linear-gradient(180deg,transparent,rgba(5,20,40,.4),transparent)',
     position: 'relative', zIndex: 10,
   },
-  aboutGrid: { maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' },
+  aboutGrid: { maxWidth: 1280, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 90, alignItems: 'center' },
   aboutLeft: {},
   secTag: {
-    display: 'inline-block', fontFamily: 'Orbitron, monospace', fontSize: 10,
-    letterSpacing: 4, color: '#00C9B1', textTransform: 'uppercase',
-    marginBottom: 14, padding: '5px 14px', borderLeft: '3px solid #00C9B1',
+    display: 'inline-block', fontFamily: 'Orbitron, monospace', fontSize: '11px',
+    letterSpacing: '4px', color: '#00C9B1', textTransform: 'uppercase',
+    marginBottom: 16, padding: '6px 16px', borderLeft: '3px solid #00C9B1', fontWeight: 700,
   },
-  aboutH2: { fontFamily: 'Orbitron, monospace', fontSize: 'clamp(24px,2.8vw,40px)', fontWeight: 900, marginBottom: 20 },
-  aboutP: { color: '#6da9c8', fontSize: 15, lineHeight: 1.8, marginBottom: 20 },
-  aboutFacts: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginTop: 10 },
-  factCard: { padding: 20, cursor: 'default' },
-  factNum: { fontFamily: 'Orbitron, monospace', fontSize: 28, fontWeight: 900, color: '#00C9B1', position: 'relative', zIndex: 3 },
-  factLbl: { fontSize: 12, color: '#6da9c8', marginTop: 4, position: 'relative', zIndex: 3 },
-  aboutRight: { display: 'flex', flexDirection: 'column', gap: 14 },
-  acard: { padding: '22px 26px', cursor: 'default', position: 'relative' },
-  acardTop: { display: 'flex', alignItems: 'center', gap: 18, position: 'relative', zIndex: 3 },
-  acardIcon: { fontSize: 34, flexShrink: 0 },
-  acardH3: { fontSize: 15, fontWeight: 700, marginBottom: 4, color: '#fff' },
-  acardP: { fontSize: 12, color: '#6da9c8', lineHeight: 1.6 },
+  aboutH2: { fontFamily: 'Orbitron, monospace', fontSize: 'clamp(28px,3.2vw,44px)', fontWeight: 900, marginBottom: 24 },
+  aboutP: { color: '#6da9c8', fontSize: '16px', lineHeight: 1.85, marginBottom: 22, fontFamily: 'Rajdhani, sans-serif', fontWeight: 500 },
+  aboutFacts: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginTop: 12 },
+  factCard: { padding: 24, cursor: 'default' },
+  factNum: { fontFamily: 'Orbitron, monospace', fontSize: 32, fontWeight: 900, color: '#00C9B1', position: 'relative', zIndex: 3 },
+  factLbl: { fontSize: '13px', color: '#6da9c8', marginTop: 6, position: 'relative', zIndex: 3, fontFamily: 'Rajdhani, sans-serif', fontWeight: 600 },
+  aboutRight: { display: 'flex', flexDirection: 'column', gap: 16 },
+  acard: { padding: '24px 28px', cursor: 'default', position: 'relative' },
+  acardTop: { display: 'flex', alignItems: 'center', gap: 20, position: 'relative', zIndex: 3 },
+  acardIcon: { fontSize: 40, flexShrink: 0 },
+  acardH3: { fontSize: '16px', fontWeight: 700, marginBottom: 6, color: '#fff', fontFamily: 'Rajdhani, sans-serif' },
+  acardP: { fontSize: '13px', color: '#6da9c8', lineHeight: 1.65 },
   acardGlowBar: {
-    position: 'absolute', top: 0, left: 0, right: 0, height: 2,
+    position: 'absolute', top: 0, left: 0, right: 0, height: 3,
     background: 'linear-gradient(90deg,#00C9B1,#00E5FF)', borderRadius: '20px 20px 0 0',
     opacity: 0, transition: 'opacity .3s', zIndex: 4,
   },
-  ambOrb: { position: 'absolute', borderRadius: '50%', filter: 'blur(80px)', opacity: .25, pointerEvents: 'none', zIndex: 0 },
+  ambOrb: { position: 'absolute', borderRadius: '50%', filter: 'blur(100px)', opacity: .25, pointerEvents: 'none', zIndex: 0 },
 }

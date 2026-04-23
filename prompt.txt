@@ -1,0 +1,9 @@
+
+ Hozirgi Bozorda Talab Qiladigan Kurslar va Mutaxassislarga Ishonch Qiling orasi juda ochilib ketgan va ular birdaniga yonma yon bo'lmasligi kerak, navbat bilan masalan: birinchi Hozirgi Bozorda Talab Qiladigan Kurslar bu kelsa va ma'lumotlari Gsap da bitta bitta card bo'lib yonma yon ko'rinaverishi kerak va shunday bo'lsa Mutaxassislarga Ishonch Qiling shu qism kelishi kerak u ham shunaqa davom etishi kerak va Bitiruvchilar Real Natijalari shunaqa bo'lishi kerak 
+cardlar juda oddiy bo'lib qolgan va ko'zga ko'rinmas bo'lib qolgan buni tog'rilash kerak chunki bu katta ekranlarda butun bir yig'lishda yaxshiroq aniq ko'rinishi kerak responsive ni ham yaxshilashing kerak va cardlarni oddiy rasmli iconlarning o'rniga haqiqiy iconlar qo'yish kerak masalan fontAwesome dan yoki react icons dan va ularga chiroyli style berish kerak 
+yozuvlarga etibor berish kerak katta yigilishda kichkina yozuv bo'lib qolishi ham notugri chunki katta ekranda olib boriladi presentation 
+2000+ Talabaning Real Muvaffaqiyati bu qism da ham cardlar juda oddiy va elementlar responsive qilinmagan bunda cardlar birma bir navbatma navbat ko'rinishi kerak, scroll qilganda biror element qolib ketmasligi kerak scroll ham pastga tushaverishi kerak va har bir qismda scroll bir auto silliq to'xtashi kerak (bu hamma qism uchun)
+Kurs bo'yicha ish joylashuv darajasi bu qism esa animatsiya bilan ko'rinishi kerak va animatsiya bilan navbatma navbat ko'rinishi kerak, keyin 
+6 qismda o'zbekistonnning xaritasi 3 d shaklida huddi birinchi qismda chizilgani kabi va filliallari ni sichqoncha orqali olib borilsa aniq chiroyli ko'rinishi kerak huddi chartlar kabi , lekin men fillialrni o'zgartira olishim kerak dynamic qilishing kerak, 
+har bir sarlavha tepadan kelyaotgan vaqtda biroz semiriib keyin joyiga tushishi kereak bu ham gsap orqali chiroyli qilishing kerak , 
+

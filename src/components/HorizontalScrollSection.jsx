@@ -1,309 +1,337 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import {
+  FaCode, FaServer, FaShieldAlt, FaPaintBrush, FaGlobeAmericas, FaBrain,
+  FaDesktop, FaComments, FaStar, FaQuoteLeft
+} from 'react-icons/fa'
 
 gsap.registerPlugin(ScrollTrigger)
 
-/* ═══════════════════════════════════════════════
-   DATA
-═══════════════════════════════════════════════ */
 const COURSES = [
-  { id: 'c1', icon: '💻', title: 'Frontend Development', dur: '7+1 oy', badge: 'Advanced',          sub: 'HTML, CSS, JS, React, Tailwind',     desc: 'Bootstrap, Tailwind, JavaScript, React. Zamonaviy responsive veb saytlar yaratish.',           color: '#00E5FF', grad: 'linear-gradient(135deg,#00C9B1,#00E5FF)', price: '2,000,000 som',  img: 'https://img.freepik.com/free-photo/html-css-collage-concept_23-2150061955.jpg' },
-  { id: 'c2', icon: '⚙️', title: 'Backend Development',  dur: '7+1 oy', badge: 'Pro Level',         sub: 'Python, Django, API, Bot',           desc: 'Python va Django bilan professional backend. REST API, PostgreSQL, Docker, Telegram botlar.',    color: '#00ff88', grad: 'linear-gradient(135deg,#00ff88,#00bcd4)', price: '2,500,000 som',  img: 'https://www.miquido.com/wp-content/uploads/2021/04/header-what-is-backend-development-1.jpg' },
-  { id: 'c3', icon: '🔐', title: 'Kiberxavfsizlik',      dur: '8 oy',   badge: 'Expert',            sub: 'Pentesting | Ethical Hacking',       desc: 'Red Team, Pentesting, Linux & Windows Security, Web Pentesting OWASP Top 10.',                   color: '#ff4d6d', grad: 'linear-gradient(135deg,#ff4d4d,#ff6b35)', price: '3,000,000 som',  img: 'https://images.ricoh-usa.com/j2jqn9lauv41/6IrdDgkJAhvm4jNoFa5QGM/27f2e319dab816390e8170427571721c/OG-Social-SaS-Cybersecurity.jpg' },
-  { id: 'c4', icon: '🎨', title: 'Grafik Dizayn',        dur: '7+1 oy', badge: 'Professional',      sub: 'Adobe Suite | Figma | After FX',     desc: 'Photoshop, Illustrator, After Effects, CorelDRAW. Logo, branding, motion graphics.',            color: '#b66dff', grad: 'linear-gradient(135deg,#b66dff,#6c63ff)', price: '1,800,000 som',  img: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?fm=jpg&q=60&w=800&fit=crop' },
-  { id: 'c5', icon: '🌐', title: 'Ingliz Tili',          dur: '6-12 oy',badge: 'IELTS Sertifikat', sub: 'A1 dan C1 gacha',                    desc: "A1 dan C1 gacha. IELTS va TOEFL tayyorgarlik. Native speaker o'qituvchi.",                       color: '#ffd700', grad: 'linear-gradient(135deg,#FFD166,#FF9F43)', price: '150,000 som/oy', img: 'https://media.istockphoto.com/id/953264308/photo/learn-english-note-at-wooden-background-with-teachers-glasses.jpg' },
-  { id: 'c6', icon: '🤖', title: 'AI & Prompt Eng.',     dur: 'Trending',badge: 'Trending 🔥',      sub: 'ChatGPT, Claude, Midjourney',        desc: "Sun'iy intellekt bilan ishlash. Biznes automation, content creation, AI tools.",                 color: '#00ff88', grad: 'linear-gradient(135deg,#1dd1a1,#00b894)', price: '800,000 som',    img: 'https://s45271.pcdn.co/wp-content/uploads/elementor/thumbs/2026.02.09_prompt-engineering-rivw8hfd7ts2pvaztkd00v5wijao8q4dw4rnu86s84.jpg' },
-  { id: 'c7', icon: '🖥️', title: 'Komp. Savodxonligi',  dur: '4 oy',   badge: "Boshlang'ich",      sub: 'Word, Excel, PowerPoint',            desc: "Ish uchun zarur kompyuter ko'nikmalari. Office dasturlar bilan professional ishlash.",           color: '#00bcd4', grad: 'linear-gradient(135deg,#00bcd4,#00838f)', price: 'Arzon narx',     img: 'https://grotechlearn.com/Content/Home/img/course-ban/basic-computer.jpg' },
-  { id: 'c8', icon: '🇷🇺', title: 'Rus Tili',            dur: 'B2 Maqsad',badge: 'Grammatika + Suhbat', sub: "Grammatika | So'zlashuv",        desc: 'Business Russian. Rossiya kompaniyalari uchun professional Russian. Grammar va Conversation.',     color: '#a29bfe', grad: 'linear-gradient(135deg,#a29bfe,#6c5ce7)', price: 'Qulay narx',     img: 'https://moderndiplomacy.eu/wp-content/uploads/2023/12/Learn-Russian-Language.jpg' },
+  { id: 'c1', Icon: FaCode, title: 'Frontend Development', dur: '7+1 oy', badge: 'Advanced', sub: 'HTML · CSS · JS · React · Tailwind', desc: 'Zamonaviy responsive veb saytlar. Bootstrap, Tailwind, JavaScript ES6+, React hooks.', color: '#00E5FF', grad: 'linear-gradient(135deg,#00C9B1,#00E5FF)', price: '2 000 000 som', jobs: '92%' },
+  { id: 'c2', Icon: FaServer, title: 'Backend Development', dur: '7+1 oy', badge: 'Pro Level', sub: 'Python · Django · REST API · Docker', desc: 'Python va Django bilan professional backend. REST API, PostgreSQL, Docker, Telegram botlar.', color: '#00ff88', grad: 'linear-gradient(135deg,#00ff88,#00bcd4)', price: '2 500 000 som', jobs: '88%' },
+  { id: 'c3', Icon: FaShieldAlt, title: 'Kiberxavfsizlik', dur: '8 oy', badge: 'Expert', sub: 'Pentesting · Ethical Hacking · OWASP', desc: 'Red Team, Pentesting, Linux & Windows Security. Web Pentesting OWASP Top 10.', color: '#ff4d6d', grad: 'linear-gradient(135deg,#ff4d4d,#ff6b35)', price: '3 000 000 som', jobs: '95%' },
+  { id: 'c4', Icon: FaPaintBrush, title: 'Grafik Dizayn', dur: '7+1 oy', badge: 'Professional', sub: 'Adobe Suite · Figma · After Effects', desc: 'Photoshop, Illustrator, After Effects, CorelDRAW. Logo, branding, motion graphics.', color: '#b66dff', grad: 'linear-gradient(135deg,#b66dff,#6c63ff)', price: '1 800 000 som', jobs: '78%' },
+  { id: 'c5', Icon: FaGlobeAmericas, title: 'Ingliz Tili', dur: '6–12 oy', badge: 'IELTS Sertifikat', sub: 'A1 dan C1 gacha · IELTS · TOEFL', desc: "A1 dan C1 gacha. IELTS va TOEFL tayyorgarlik. Native speaker o'qituvchi.", color: '#ffd700', grad: 'linear-gradient(135deg,#FFD166,#FF9F43)', price: '150 000 som/oy', jobs: '70%' },
+  { id: 'c6', Icon: FaBrain, title: 'AI & Prompt Eng.', dur: 'Trending', badge: 'HOT 🔥', sub: 'ChatGPT · Claude · Midjourney · Automation', desc: "Sun'iy intellekt bilan ishlash. Biznes automation, content creation, AI tools.", color: '#1dd1a1', grad: 'linear-gradient(135deg,#1dd1a1,#00b894)', price: '800 000 som', jobs: '85%' },
+  { id: 'c7', Icon: FaDesktop, title: 'Komp. Savodxonligi', dur: '4 oy', badge: "Boshlang'ich", sub: 'Word · Excel · PowerPoint · Internet', desc: "Ish uchun zarur kompyuter ko'nikmalari. Office dasturlar bilan professional ishlash.", color: '#00bcd4', grad: 'linear-gradient(135deg,#00bcd4,#00838f)', price: 'Arzon narx', jobs: '65%' },
+  { id: 'c8', Icon: FaComments, title: 'Rus Tili', dur: 'B2 Maqsad', badge: 'Grammatika + Suhbat', sub: "Grammatika · So'zlashuv · Business", desc: 'Business Russian. Rossiya kompaniyalari uchun professional Russian. Grammar + Conv.', color: '#a29bfe', grad: 'linear-gradient(135deg,#a29bfe,#6c5ce7)', price: 'Qulay narx', jobs: '68%' },
 ]
 
 const TEACHERS = [
-  { name: 'Alisher Karimov',       role: 'Backend Developer',  rating: '4.95', emoji: '👨‍💻', badge: '🏆 TOP',     color: '#00C9B1', grad: 'linear-gradient(135deg,#00C9B1,#00E5FF)', skills: ['Python','Django','REST API','Docker'],           students: '500+', exp: '15+', company: 'Google',    bio: "O'zbek IT sohasining yetakchi backend mutaxassisi. Google va Samsung loyihalarida ishlab, 15+ yil tajribani Joylinks talabalariga ulashadi." },
-  { name: 'Madina Omonova',         role: 'UI/UX Designer',     rating: '4.92', emoji: '👩‍🎨', badge: '✨ DIZAYN', color: '#FFD166', grad: 'linear-gradient(135deg,#FFD166,#FF9F43)', skills: ['Figma','Photoshop','Adobe XD','Branding'],       students: '350+', exp: '12+', company: '200+ Proekt',bio: "200+ brendni visual identifikatsiyasini yaratgan. Figma va Adobe Suite bo'yicha O'zbekistondagi eng so'ralgan mutaxassis." },
-  { name: 'Sardor Mirza',           role: 'English Teacher',    rating: '4.97', emoji: '👨‍🎓', badge: '🎯 IELTS',  color: '#FF6B6B', grad: 'linear-gradient(135deg,#FF6B6B,#FF8E72)', skills: ['IELTS 8.5','TOEFL','IT English','Speaking'],    students: '800+', exp: '10+', company: 'Oxford',    bio: "IELTS 8.5 ball egasi. Oxford dasturida ishtirok etgan. 800+ talabani IELTS maqsadiga yetkazgan legendar o'qituvchi." },
-  { name: 'Javohir Abdurahmonov',   role: 'AI Expert',          rating: '4.98', emoji: '👨‍💼', badge: '🤖 AI',     color: '#1dd1a1', grad: 'linear-gradient(135deg,#1dd1a1,#00b894)', skills: ['ChatGPT','Claude','Midjourney','Automation'],   students: '220+', exp: '8+',  company: 'OpenAI',   bio: "OpenAI hamkorligida AI kurslarini yaratgan. O'zbekistonda AI education pioneeri. Prompt Engineering bo'yicha kitob muallifi." },
-  { name: 'Nozima Tosheva',         role: 'Motion Design',      rating: '4.93', emoji: '👩‍🏫', badge: '🎬 MOTION',color: '#a29bfe', grad: 'linear-gradient(135deg,#5F27CD,#8E44AD)', skills: ['After Effects','Premiere','Animation','3D'],    students: '280+', exp: '11+', company: '150+ Video',bio: "150+ reklama va motion graphics loyihasining muallifi. After Effects va Cinema 4D bo'yicha sertifikatlangan mutaxassis." },
-  { name: 'Firuza Rahimova',        role: 'Frontend Developer', rating: '4.94', emoji: '👩‍💻', badge: '⚡ FRONT', color: '#FF6B6B', grad: 'linear-gradient(135deg,#E74C3C,#C0392B)', skills: ['React','Vue.js','TypeScript','Webpack'],        students: '320+', exp: '9+',  company: '80+ Sayt', bio: "80+ veb sayt va 3 ta startup mahsulotini yaratgan. React va TypeScript bo'yicha O'zbekistondagi eng yosh senior mutaxassis." },
+  { name: 'Refatbek Arolov', role: 'Direktor', badge: '👔 DIREKTOR', emoji: '🧑‍💼', rating: '5.0', color: '#00C9B1', grad: 'linear-gradient(135deg,#00C9B1,#00E5FF)', skills: ['Kompyuter savodxonligi', 'Prompt Engineering'], students: '1000+', exp: '10+', company: 'Joylinks', bio: 'Joylinks IT va Biznes Akademiyasi direktori.' },
+  { name: 'Behruz Karimov', role: "O'qituvchi", badge: '💻 IT', emoji: '👨‍💻', rating: '4.9', color: '#FFD166', grad: 'linear-gradient(135deg,#FFD166,#FF9F43)', skills: ['Kompyuter savodxonligi'], students: '500+', exp: '5+', company: 'Joylinks', bio: "Kompyuter savodxonligi bo'yicha mutaxassis." },
+  { name: 'Umid Mamatraximov', role: "O'qituvchi", badge: 'FRONT-END', emoji: '⚡', rating: '4.9', color: '#FF6B6B', grad: 'linear-gradient(135deg,#E74C3C,#C0392B)', skills: ['Front-end', 'IT Foundation'], students: '300+', exp: '4+', company: 'Joylinks', bio: "Front-end dasturlash bo'yicha o'qituvchi." },
+  { name: 'Jahongir Omonov', role: "O'qituvchi", badge: 'BACK-END', emoji: '⚙️', rating: '4.9', color: '#1dd1a1', grad: 'linear-gradient(135deg,#1dd1a1,#00b894)', skills: ['Back-end', 'IT Foundation'], students: '300+', exp: '4+', company: 'Joylinks', bio: "Serverlar va ma'lumotlar bazasi ustasi." },
+  { name: 'Samandar Qurbonov', role: "O'qituvchi", badge: 'FRONT-END', emoji: '🖥️', rating: '4.8', color: '#a29bfe', grad: 'linear-gradient(135deg,#5F27CD,#8E44AD)', skills: ['Front-end', 'Kompyuter savodxonligi'], students: '400+', exp: '4+', company: 'Joylinks', bio: "Web dizayn va front-end bo'yicha ustoz." },
+  { name: 'Elshodbek Rakhmonov', role: "O'qituvchi", badge: 'FOUNDATION', emoji: '🚀', rating: '4.8', color: '#ff9ff3', grad: 'linear-gradient(135deg,#f368e0,#ff9ff3)', skills: ['IT Foundation'], students: '200+', exp: '3+', company: 'Joylinks', bio: "IT sohasiga kirib kelayotganlar uchun murabbiy." },
+  { name: "Nafisa Ro'ziyeva", role: "O'qituvchi", badge: 'SAVODXONLIK', emoji: '👩‍🏫', rating: '4.9', color: '#48dbfb', grad: 'linear-gradient(135deg,#0abde3,#48dbfb)', skills: ['Kompyuter savodxonligi'], students: '600+', exp: '6+', company: 'Joylinks', bio: "Ofis dasturlari va kompyuter sirlari o'rgatadi." },
+  { name: 'Abbos Xushboqov', role: "O'qituvchi", badge: 'SECURITY', emoji: '🛡️', rating: '5.0', color: '#ff6b6b', grad: 'linear-gradient(135deg,#ee5253,#ff6b6b)', skills: ['Kiberxavfsizlik'], students: '150+', exp: '5+', company: 'Joylinks', bio: "Axborot xavfsizligi bo'yicha professional mutaxassis." },
+  { name: 'Dilnoza Shamshiddinova', role: "O'qituvchi", badge: 'ENGLISH', emoji: '🇬🇧', rating: '4.9', color: '#feca57', grad: 'linear-gradient(135deg,#ff9f43,#feca57)', skills: ['Ingliz Tili'], students: '500+', exp: '5+', company: 'Joylinks', bio: "IT mutaxassislari uchun ingliz tili darslari olib boradi." },
 ]
 
 const TESTIMONIALS = [
-  { name: 'Muhammad Amin',    role: 'Backend Developer → Google',      emoji: '👨‍💼', color: 'linear-gradient(135deg,#00C9B1,#00E5FF)', start: "Python hech narsani bilmasdan boshladi",           mid: "3 oyda Backend malakalarini o'rgandi, API yaratdi",  end: "Google Senior Developer — oylik 7 mln so'm",   quote: '"Joylinks nafaqat texnologiya balkim o\'z-o\'ziga ishonch berdi!"', rating: 5 },
-  { name: 'Feruza Xalimova',  role: 'Grafik Designer → Startup Lead',  emoji: '👩‍🎨', color: 'linear-gradient(135deg,#FFD166,#FF9F43)', start: "Photoshop ni biladimi ham bilmasdi",               mid: "5 oyda Senior Designer sifatida startupga kirdi",    end: "Startup Design Lead — 4 mln + options",        quote: '"Joylinks tungi quloq bo\'lib mentoring berdi!"', rating: 5 },
-  { name: 'Sherzod Rahimov',  role: 'IELTS 5.5 → 8.0 → Oxford',       emoji: '🎓',   color: 'linear-gradient(135deg,#1dd1a1,#00b894)', start: "IELTS 5.5 bal bilan qo'rqib turdi",               mid: "3 oyda 7.0 dan 8.0 ga ko'tarildi",               end: "Oxford University — stipendiya bilan",         quote: '"Sardor o\'qituvchining darslarida inglizcha yoqdi boshladi!"', rating: 5 },
-  { name: 'Aziz Normatov',    role: 'Grafik dizayn bitiruvchisi',       emoji: '🧑‍🎨', color: 'linear-gradient(135deg,#b66dff,#6c63ff)', start: "Kompyuter va Photoshop dan umuman xabar yo'q",    mid: '6 oy ichida 50+ brend dizayni yaratdi',             end: 'Hozir Dubayda Senior Designer — $3000/oy',     quote: '"Madina domla meni dizayner qildi, Joylinks esa kelajagimni!"', rating: 5 },
+  { name: 'Ozodbek Ruziboyev', role: 'Bitiruvchi', emoji: '👨‍🎓', color: '#00C9B1', grad: 'linear-gradient(135deg,#00C9B1,#00E5FF)', salary: 'MUVAFFAQIYATLI', start: "Noldan boshladi", mid: "Jadal o'rganish va loyihalar", end: "Hozirda kuchli mutaxassis", quote: '"Joylinks men uchun kelajak eshiklarini ochdi!"', rating: 5 },
+  { name: 'Mamatov Musulmon', role: 'Bitiruvchi', emoji: '🚀', color: '#FFD166', grad: 'linear-gradient(135deg,#FFD166,#FF9F43)', salary: 'KURS BITIRUVCHISI', start: "IT haqida tushuncham yo'q edi", mid: "Ajoyib muhitda ta'lim", end: "Hozirda dasturchi bo'lib yetishdi", quote: "Eng zo\\'r ustozlar va muhit shu yerda!", rating: 5 },
+  { name: 'Quldoshev Xalil', role: 'Bitiruvchi', emoji: '🎯', color: '#1dd1a1', grad: 'linear-gradient(135deg,#1dd1a1,#00b894)', salary: 'ALUMNI', start: "Boshlang'ich bilim", mid: "Amaliyot va mashqlar", end: "Katta maqsadlarga yetildi", quote: '"Shaxsiy mentoring bilan katta natijaga erishdim."', rating: 5 },
+  { name: 'Kosimov Adxambek', role: 'Bitiruvchi', emoji: '💻', color: '#b66dff', grad: 'linear-gradient(135deg,#b66dff,#6c63ff)', salary: 'TOP NATIJA', start: "Faqatgina qiziqish bor edi", mid: "Ustozlar katta yordam berishdi", end: "Ishonchli va kuchli malaka", quote: '"Darslar shunchaki ajoyib. Rahmat kattakon!"', rating: 5 },
 ]
 
-/* ═══════════════════════════════════════════════
-   COMPONENT
-═══════════════════════════════════════════════ */
-export default function HorizontalScrollSection() {
-  const sectionRef = useRef(null)
-  const trackRef   = useRef(null)
-  const panelsRef  = useRef([])
-  const [selectedTeacher, setSelectedTeacher] = useState(null)
-  const [modalVisible,    setModalVisible]    = useState(false)
-
-  /* ── HORIZONTAL SCROLL GSAP ── */
+/* ─── HORIZONTAL PANEL HOOK ─── */
+function usePinnedHScroll(sectionRef, trackRef) {
   useEffect(() => {
-    const panels = panelsRef.current.filter(Boolean)
-    if (!panels.length || !trackRef.current || !sectionRef.current) return
+    const section = sectionRef.current
+    const track = trackRef.current
+    if (!section || !track) return
 
-    const ctx = gsap.context(() => {
-      const totalWidth = trackRef.current.scrollWidth - window.innerWidth
+    const cards = [...track.querySelectorAll('.h-card')]
+    const getScroll = () => track.scrollWidth - window.innerWidth + 120
 
-      /* ── main horizontal tween ── */
-      const horizontalTween = gsap.to(trackRef.current, {
-        x: -totalWidth,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top top',
-          end: () => `+=${totalWidth * 1.1}`,
-          scrub: 1.2,
-          pin: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
-      })
-
-      /* ── panel inner fade-in (only when horizontalTween exists) ── */
-      if (horizontalTween) {
-        panels.forEach((panel) => {
-          const inner = panel.querySelector('.panel-inner')
-          if (!inner) return
-          gsap.fromTo(inner,
-            { x: 80, opacity: 0 },
-            {
-              x: 0, opacity: 1, duration: 1, ease: 'power2.out',
-              scrollTrigger: {
-                trigger: panel,
-                containerAnimation: horizontalTween,
-                start: 'left 90%',
-                end:   'left 30%',
-                toggleActions: 'play none none reverse',
-              },
-            })
-        })
-
-        /* ── panel BG parallax ── */
-        panels.forEach((panel) => {
-          const bg = panel.querySelector('.panel-bg')
-          if (!bg) return
-          gsap.to(bg, {
-            x: -60, ease: 'none',
-            scrollTrigger: {
-              trigger: panel,
-              containerAnimation: horizontalTween,
-              start: 'left right',
-              end:   'right left',
-              scrub: 2,
-            },
+    const tween = gsap.to(track, {
+      x: () => -getScroll(),
+      ease: 'none',
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        end: () => `+=${getScroll()}`,
+        pin: true,
+        scrub: 1.2, // Ultra smooth scrubbing
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          // GSAP Velocity-based momentum skew effect for MAX quality
+          const velocity = Math.min(Math.max(self.getVelocity() / 150, -12), 12)
+          gsap.to(cards, {
+            skewX: -velocity * 0.6,
+            rotation: velocity * 0.1,
+            overwrite: 'auto',
+            duration: 0.6,
+            ease: 'power3.out'
           })
-        })
+        }
+      },
+    })
 
-        /* ── course cards stagger ── */
-        const courseCards = sectionRef.current.querySelectorAll('.course-card-item')
-        courseCards.forEach((card, i) => {
-          gsap.fromTo(card,
-            { y: 50, opacity: 0, rotationY: 15 },
-            {
-              y: 0, opacity: 1, rotationY: 0, duration: .7, delay: i * .08, ease: 'back.out(1.5)',
-              scrollTrigger: {
-                trigger: card,
-                containerAnimation: horizontalTween,
-                start: 'left 85%',
-              },
-            })
-        })
-      }
-    }, sectionRef)
+    // Staggered appear side by side with Premium GSAP 3D config
+    cards.forEach((card, i) => {
+      gsap.fromTo(card,
+        {
+          opacity: 0,
+          scale: 0.75,
+          y: 60,
+          x: 40,
+          rotationY: 25,
+          rotationZ: -3,
+          transformPerspective: 1200
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          x: 0,
+          rotationY: 0,
+          rotationZ: 0,
+          duration: 1.3,
+          ease: 'power4.out',
+          scrollTrigger: {
+            trigger: card,
+            containerAnimation: tween,
+            start: 'left 98%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      )
+    })
 
-    return () => ctx.revert()
+    // Reset snap for velocity check
+    ScrollTrigger.create({
+      trigger: section,
+      start: 'top top',
+      end: () => `+=${getScroll()}`,
+      onLeave: () => gsap.to(cards, { skewX: 0, rotation: 0, duration: 0.5 }),
+      onLeaveBack: () => gsap.to(cards, { skewX: 0, rotation: 0, duration: 0.5 })
+    })
+
+    return () => {
+      ScrollTrigger.getAll().forEach(t => {
+        if (t.vars.containerAnimation === tween) t.kill()
+      })
+      tween.scrollTrigger?.kill()
+      tween.kill()
+    }
+  }, [sectionRef, trackRef])
+}
+
+export default function HorizontalScrollSection() {
+  const [selectedTeacher, setSelectedTeacher] = useState(null)
+  const [modalVisible, setModalVisible] = useState(false)
+
+  const cSecRef = useRef(null); const cTrkRef = useRef(null)
+  const tSecRef = useRef(null); const tTrkRef = useRef(null)
+  const stSecRef = useRef(null); const stTrkRef = useRef(null)
+  const modalContentRef = useRef(null)
+
+  usePinnedHScroll(cSecRef, cTrkRef)
+  usePinnedHScroll(tSecRef, tTrkRef)
+  usePinnedHScroll(stSecRef, stTrkRef)
+
+  /* modal GSAP entry animation */
+  useEffect(() => {
+    if (modalVisible && modalContentRef.current) {
+      const els = modalContentRef.current.children
+      gsap.fromTo(els,
+        { y: 30, opacity: 0, scale: 0.95 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.6, stagger: 0.05, ease: 'back.out(1.4)' }
+      )
+    }
+  }, [modalVisible])
+
+  /* heading squish animation */
+  useEffect(() => {
+    const els = document.querySelectorAll('.sec-heading')
+    els.forEach(el => {
+      gsap.fromTo(el,
+        { scaleX: 1.22, scaleY: 0.5, opacity: 0, y: -52 },
+        {
+          scaleX: 1, scaleY: 1, opacity: 1, y: 0, duration: 1, ease: 'elastic.out(1,0.46)',
+          scrollTrigger: { trigger: el, start: 'top 80%', toggleActions: 'play none none none' }
+        })
+    })
   }, [])
 
-  /* ── 3D TILT ── */
-  const tilt   = (e, el) => {
-    const r = el.getBoundingClientRect()
-    const x = (e.clientX - r.left) / r.width  - .5
-    const y = (e.clientY - r.top)  / r.height - .5
-    gsap.to(el, { rotationY: x * 18, rotationX: -y * 13, scale: 1.04, duration: .35, ease: 'power2.out', transformPerspective: 900 })
-  }
+  const tilt = (e, el) => { const r = el.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width - .5; const y = (e.clientY - r.top) / r.height - .5; gsap.to(el, { rotationY: x * 14, rotationX: -y * 10, scale: 1.05, duration: .3, ease: 'power2.out', transformPerspective: 1200 }) }
   const untilt = el => gsap.to(el, { rotationY: 0, rotationX: 0, scale: 1, duration: .5, ease: 'power2.out' })
 
-  const openTeacher = (t) => {
-    setSelectedTeacher(t)
-    setModalVisible(true)
-    document.body.style.overflow = 'hidden'
-  }
-  const closeModal = () => {
-    setModalVisible(false)
-    setTimeout(() => setSelectedTeacher(null), 400)
-    document.body.style.overflow = ''
-  }
+  const open = t => { setSelectedTeacher(t); setModalVisible(true); document.body.style.overflow = 'hidden' }
+  const close = () => { setModalVisible(false); setTimeout(() => { setSelectedTeacher(null); document.body.style.overflow = '' }, 350) }
 
   return (
     <>
-      {/* ════════════════════════════════════════════
-          HORIZONTAL SCROLL WRAPPER
-      ════════════════════════════════════════════ */}
-      <div ref={sectionRef} style={hStyles.wrapper}>
-        <div ref={trackRef} style={hStyles.track}>
+      <style>{`
+        @keyframes arrowBounce { 0%,100%{transform:translateX(0);opacity:1} 50%{transform:translateX(10px);opacity:.5} }
+        .h-card { transform-style: preserve-3d; }
+        .h-card:hover .glow-bar { opacity: 1 !important; }
+      `}</style>
 
-          {/* ── PANEL 0: INTRO LABEL ── */}
-          <div ref={el => panelsRef.current[0] = el} style={{ ...hStyles.panel, ...hStyles.introPanel }}>
-            <div className="panel-bg" style={hStyles.panelBgGrad} />
-            <div className="panel-inner" style={hStyles.introPanelInner}>
-              <div style={hStyles.panelLabel}>📚 KURSLAR</div>
-              <h2 style={hStyles.panelH2}>
-                Hozirgi Bozorda<br />
-                <span className="g">Talab Qiladigan</span><br />
-                Kurslar
-              </h2>
-              <p style={hStyles.panelSub}>8 maxsus kurs | Sertifikatsiya | Real proyektlar | Ish bilan ta'minlash</p>
-              <div style={hStyles.scrollHint}>
-                <span style={hStyles.scrollArrow}>→</span>
-                <span style={{ fontSize: 13, color: '#6da9c8', letterSpacing: 2 }}>SCROLL DOWN</span>
-              </div>
-            </div>
-          </div>
-
-          {/* ── PANEL 1: COURSES ── */}
-          <div ref={el => panelsRef.current[1] = el} style={{ ...hStyles.panel, width: '220vw' }}>
-            <div className="panel-bg" style={{ ...hStyles.panelBgGrad, background: 'radial-gradient(ellipse 60% 80% at 30% 50%, rgba(0,201,177,.05),transparent)' }} />
-            <div className="panel-inner" style={hStyles.coursesGrid}>
-              {COURSES.map((c) => (
-                <div key={c.id} className="course-card-item glass" style={{ ...hStyles.courseCard }}
-                  onMouseMove={e => tilt(e, e.currentTarget)} onMouseLeave={e => untilt(e.currentTarget)}>
-                  <div style={{ ...hStyles.cardImgOverlay, backgroundImage: `url(${c.img})` }} />
-                  <div style={{ ...hStyles.glowBar, background: c.grad }} />
-                  <div style={{ position: 'relative', zIndex: 3 }}>
-                    <div style={hStyles.durBadge}>
-                      <span style={{ color: c.color, fontFamily: 'Orbitron', fontWeight: 900, fontSize: 18 }}>{c.dur.split(' ')[0]}</span>
-                      <span style={{ fontSize: 9, color: '#6da9c8', display: 'block', letterSpacing: 1 }}>{c.dur.includes('oy') ? 'OY' : c.dur.toUpperCase()}</span>
-                    </div>
-                    <span style={{ ...hStyles.badge, color: c.color, borderColor: `${c.color}44` }}>{c.badge}</span>
-                    <h3 style={hStyles.cardTitle}>{c.title}</h3>
-                    <div style={{ ...hStyles.cardSub, color: c.color }}>{c.sub}</div>
-                    <p style={hStyles.cardDesc}>{c.desc}</p>
-                    <div style={hStyles.priceTag}>💰 {c.price}</div>
-                  </div>
+      {/* ════════════════ COURSES ════════════════ */}
+      <section id="courses" ref={cSecRef} style={S.pin}>
+        <div style={{ ...S.orb, background: 'radial-gradient(#00C9B122,transparent)', top: -220, right: -80 }} />
+        <div style={S.head}>
+          <div style={S.tag}>📚 KURSLAR</div>
+          <h2 className="sec-heading" style={S.h2}>
+            Hozirgi Bozorda <span className="g">Talab Qiladigan</span> Kurslar
+          </h2>
+          <p style={S.sub}>8 maxsus kurs · Sertifikatsiya · Real proyektlar · Ish bilan ta'minlash</p>
+        </div>
+        <div style={S.viewport}>
+          <div ref={cTrkRef} style={S.track}>
+            {COURSES.map(c => (
+              <div key={c.id} className="h-card glass" style={S.cCard}
+                onMouseMove={e => tilt(e, e.currentTarget)} onMouseLeave={e => untilt(e.currentTarget)}>
+                <div className="glow-bar" style={{ ...S.topBar, background: c.grad, opacity: .85 }} />
+                <div style={{ ...S.iconWrap, background: `${c.color}18`, border: `1.5px solid ${c.color}44` }}>
+                  <c.Icon style={{ color: c.color, fontSize: '2.4rem' }} />
                 </div>
-              ))}
-            </div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <span style={{ ...S.badge, color: c.color, borderColor: `${c.color}55` }}>{c.badge}</span>
+                  <span style={{ fontFamily: 'Orbitron,monospace', fontSize: 12, fontWeight: 800, color: c.color, letterSpacing: 1 }}>{c.dur}</span>
+                </div>
+                <h3 style={S.cTitle}>{c.title}</h3>
+                <div style={{ fontSize: 13, fontWeight: 700, color: c.color, fontFamily: 'Rajdhani', letterSpacing: '.5px' }}>{c.sub}</div>
+                <p style={S.cDesc}>{c.desc}</p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <span style={{ fontSize: 12, color: '#6da9c8', fontFamily: 'Rajdhani' }}>Ish joylashuv:</span>
+                  <span style={{ fontFamily: 'Orbitron,monospace', fontSize: 14, fontWeight: 900, color: c.color }}>{c.jobs}</span>
+                </div>
+                <div style={{ padding: '9px 14px', borderRadius: 10, background: `${c.color}14`, color: c.color, fontFamily: 'Orbitron,monospace', fontSize: 13, fontWeight: 700, textAlign: 'center' }}>
+                  💰 {c.price}
+                </div>
+              </div>
+            ))}
           </div>
+        </div>
+        <Hint />
+      </section>
 
-          {/* ── PANEL 2: TEACHERS ── */}
-          <div ref={el => panelsRef.current[2] = el} style={{ ...hStyles.panel, width: '180vw', background: 'linear-gradient(180deg,transparent,rgba(5,20,40,.5),transparent)' }}>
-            <div className="panel-bg" style={{ ...hStyles.panelBgGrad, background: 'radial-gradient(ellipse 50% 70% at 70% 50%, rgba(0,100,255,.04),transparent)' }} />
-            <div className="panel-inner" style={{ width: '100%', padding: '80px 56px' }}>
-              <div style={hStyles.panelHeader}>
-                <div style={hStyles.panelLabel}>🌟 O'QITUVCHILAR</div>
-                <h2 style={hStyles.panelH2}>Mutaxassislarga <span className="g">Ishonch Qiling</span></h2>
-                <p style={hStyles.panelSub}>50+ malakali o'qituvchi | Xalqaro sertifikatlar | 10-15+ yil real tajriba</p>
+      {/* ════════════════ TEACHERS ════════════════ */}
+      <section id="teachers" ref={tSecRef} style={{ ...S.pin, background: 'linear-gradient(160deg,#020f28,#030d1e)' }}>
+        <div style={{ ...S.orb, background: 'radial-gradient(#0044ff18,transparent)', bottom: -200, left: -80 }} />
+        <div style={S.head}>
+          <div style={S.tag}>🌟 O'QITUVCHILAR</div>
+          <h2 className="sec-heading" style={S.h2}>
+            Mutaxassislarga <span className="g">Ishonch Qiling</span>
+          </h2>
+          <p style={S.sub}>50+ malakali o'qituvchi · Xalqaro sertifikatlar · 10–15+ yil real tajriba</p>
+        </div>
+        <div style={S.viewport}>
+          <div ref={tTrkRef} style={S.track}>
+            {TEACHERS.map((t, i) => (
+              <div key={i} className="h-card glass" style={S.tCard}
+                onClick={() => open(t)}
+                onMouseMove={e => tilt(e, e.currentTarget)} onMouseLeave={e => untilt(e.currentTarget)}>
+                <div className="glow-bar" style={{ ...S.topBar, background: t.grad, opacity: .85 }} />
+                <div style={{ position: 'relative', marginBottom: 20 }}>
+                  <div style={{ ...S.avRing, borderColor: `${t.color}55` }} />
+                  <div style={{ ...S.av, background: t.grad }}>{t.emoji}</div>
+                  <div style={{ ...S.tBadge, color: t.color, borderColor: `${t.color}44` }}>{t.badge}</div>
+                </div>
+                <h3 style={{ fontFamily: 'Orbitron,monospace', fontSize: 'clamp(11px,0.9vw,13px)', fontWeight: 900, color: '#fff', marginBottom: 5 }}>{t.name}</h3>
+                <div style={{ fontSize: 13, fontWeight: 700, fontFamily: 'Rajdhani', letterSpacing: '1px', color: t.color, marginBottom: 10 }}>{t.role}</div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4, marginBottom: 12 }}>
+                  {[...Array(5)].map((_, j) => <FaStar key={j} style={{ color: '#ffd700', fontSize: '1rem' }} />)}
+                  <span style={{ fontFamily: 'Orbitron,monospace', fontSize: 14, fontWeight: 900, color: t.color, marginLeft: 4 }}>{t.rating}</span>
+                </div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5, justifyContent: 'center', marginBottom: 14 }}>
+                  {t.skills.map(sk => <span key={sk} style={{ fontSize: 11, padding: '4px 10px', borderRadius: 6, border: `1px solid ${t.color}33`, background: 'rgba(255,255,255,.04)', fontFamily: 'Rajdhani', fontWeight: 700, color: t.color }}>{sk}</span>)}
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-around', paddingTop: 12, borderTop: '1px solid rgba(255,255,255,.07)' }}>
+                  {[['students', "O'quvchi"], ['exp', 'Yil'], ['company', 'Tajriba']].map(([k, l]) => (
+                    <div key={k} style={{ textAlign: 'center' }}>
+                      <div style={{ fontFamily: 'Orbitron,monospace', fontSize: 14, fontWeight: 900, color: t.color }}>{t[k]}</div>
+                      <div style={{ fontSize: 9, color: '#6da9c8', letterSpacing: '1px', textTransform: 'uppercase', marginTop: 3 }}>{l}</div>
+                    </div>
+                  ))}
+                </div>
+                <div style={{ display: 'inline-block', marginTop: 12, padding: '5px 16px', borderRadius: 20, fontSize: 11, fontFamily: 'Rajdhani', fontWeight: 700, background: 'rgba(255,255,255,.04)', border: `1px solid ${t.color}33`, color: t.color }}>
+                  Batafsil ko'rish →
+                </div>
               </div>
-              <div style={hStyles.teachersGrid}>
-                {TEACHERS.map((t, i) => (
-                  <div key={i} className="glass" style={hStyles.teacherCard}
-                    onClick={() => openTeacher(t)}
-                    onMouseMove={e => tilt(e, e.currentTarget)} onMouseLeave={e => untilt(e.currentTarget)}>
-                    <div style={{ ...hStyles.glowBar, background: t.grad }} />
-                    <div style={{ position: 'relative', marginBottom: 16 }}>
-                      <div style={hStyles.tAvRing} />
-                      <div style={{ ...hStyles.tAv, background: t.grad }}>{t.emoji}</div>
-                      <div style={hStyles.tBadge}>{t.badge}</div>
-                    </div>
-                    <h3 style={hStyles.tName}>{t.name}</h3>
-                    <div style={{ ...hStyles.tRole, color: t.color }}>{t.role}</div>
-                    <div style={hStyles.tRating}>⭐⭐⭐⭐⭐ <span style={{ color: '#ffd700', fontFamily: 'Orbitron', fontSize: 13 }}>{t.rating}</span></div>
-                    <div style={hStyles.tSkills}>
-                      {t.skills.map(s => <span key={s} style={{ ...hStyles.sk, color: t.color, borderColor: `${t.color}33` }}>{s}</span>)}
-                    </div>
-                    <div style={hStyles.tFooter}>
-                      {[['students',"O'quvchi"],['exp','Yil'],['company','Tajriba']].map(([k,lbl]) => (
-                        <div key={k} style={{ textAlign: 'center' }}>
-                          <div style={{ ...hStyles.tfNum, color: t.color }}>{t[k]}</div>
-                          <div style={hStyles.tfLbl}>{lbl}</div>
-                        </div>
-                      ))}
-                    </div>
-                    <div style={hStyles.clickHint}>Batafsil ko'rish →</div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
+        </div>
+        <Hint />
+      </section>
 
-          {/* ── PANEL 3: TESTIMONIALS ── */}
-          <div ref={el => panelsRef.current[3] = el} style={{ ...hStyles.panel, width: '160vw' }}>
-            <div className="panel-bg" style={{ ...hStyles.panelBgGrad, background: 'radial-gradient(ellipse 60% 60% at 40% 60%, rgba(0,229,255,.04),transparent)' }} />
-            <div className="panel-inner" style={{ width: '100%', padding: '80px 56px' }}>
-              <div style={hStyles.panelHeader}>
-                <div style={hStyles.panelLabel}>🏆 MUVAFFAQIYAT</div>
-                <h2 style={hStyles.panelH2}>Bitiruvchilar <span className="g">Real Natijalari</span></h2>
-                <p style={hStyles.panelSub}>95% sertifikat | 85% 3 oyda ish | 4.9/5 baholash | 2-7M oylik</p>
-              </div>
-              <div style={hStyles.testiGrid}>
-                {TESTIMONIALS.map((t, i) => (
-                  <div key={i} className="glass" style={hStyles.testiCard}
-                    onMouseMove={e => tilt(e, e.currentTarget)} onMouseLeave={e => untilt(e.currentTarget)}>
-                    <div style={{ ...hStyles.glowBar, background: t.color }} />
-                    <div style={{ position: 'relative', zIndex: 3 }}>
-                      <div style={{ ...hStyles.testiAv, background: t.color }}>{t.emoji}</div>
-                      <div style={hStyles.testiName}>{t.name}</div>
-                      <div style={hStyles.testiRole}>{t.role}</div>
-                      <div style={hStyles.stars}>{'★'.repeat(t.rating)}</div>
-                      <div style={{ marginTop: 20 }}>
-                        {[['Boshlanish',t.start,false],['Jarayon',t.mid,false],['Hozir ✅',t.end,true]].map(([lbl,txt,ok]) => (
-                          <div key={lbl} style={hStyles.tlItem}>
-                            <div style={{ ...hStyles.tlDot, background: ok ? '#00C9B1' : '#6da9c8', boxShadow: ok ? '0 0 10px #00C9B1' : 'none' }} />
-                            <div>
-                              <div style={hStyles.tlLbl}>{lbl}</div>
-                              <div style={hStyles.tlTxt}>{txt}</div>
-                            </div>
-                          </div>
-                        ))}
+      {/* ════════════════ TESTIMONIALS ════════════════ */}
+      <section id="testimonials" ref={stSecRef} style={{ ...S.pin, background: 'linear-gradient(160deg,#02101f,#031628)' }}>
+        <div style={{ ...S.orb, background: 'radial-gradient(#00ff8810,transparent)', top: -80, left: '25%' }} />
+        <div style={S.head}>
+          <div style={S.tag}>🏆 MUVAFFAQIYAT TARIXI</div>
+          <h2 className="sec-heading" style={S.h2}>
+            Bitiruvchilar <span className="g">Real Natijalari</span>
+          </h2>
+          <p style={S.sub}>95% sertifikat · 85% 3 oyda ish · 4.9/5 baholash · 2–7M oylik maosh</p>
+        </div>
+        <div style={S.viewport}>
+          <div ref={stTrkRef} style={S.track}>
+            {TESTIMONIALS.map((t, i) => (
+              <div key={i} className="h-card glass" style={S.stCard}
+                onMouseMove={e => tilt(e, e.currentTarget)} onMouseLeave={e => untilt(e.currentTarget)}>
+                <div className="glow-bar" style={{ ...S.topBar, background: t.grad, opacity: .85 }} />
+                <div style={{ ...S.salBadge, background: t.grad }}>{t.salary}</div>
+                <div style={{ width: 64, height: 64, borderRadius: '50%', background: t.grad, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem', marginBottom: 14, boxShadow: '0 6px 24px rgba(0,0,0,.5)' }}>{t.emoji}</div>
+                <h3 style={{ fontFamily: 'Orbitron,monospace', fontSize: 'clamp(12px,1vw,14px)', fontWeight: 900, color: '#fff', marginBottom: 4 }}>{t.name}</h3>
+                <div style={{ color: t.color, fontSize: 13, fontFamily: 'Rajdhani', fontWeight: 700, marginBottom: 12 }}>{t.role}</div>
+                <div style={{ display: 'flex', gap: 4, marginBottom: 16 }}>{[...Array(t.rating)].map((_, j) => <FaStar key={j} style={{ color: '#ffd700', fontSize: '1rem' }} />)}</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                  {[['🏁 Boshlanish', t.start, false], ['⚡ Jarayon', t.mid, false], ['✅ Hozir', t.end, true]].map(([lbl, txt, ok]) => (
+                    <div key={lbl} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+                      <div style={{ width: 13, height: 13, borderRadius: '50%', flexShrink: 0, marginTop: 3, background: ok ? '#00C9B1' : '#334', boxShadow: ok ? '0 0 12px #00C9B1' : 'none', border: `2px solid ${ok ? '#00C9B1' : '#445'}` }} />
+                      <div>
+                        <div style={{ fontSize: 10, fontFamily: 'Orbitron', fontWeight: 700, letterSpacing: '1px', marginBottom: 2, textTransform: 'uppercase', color: ok ? '#00C9B1' : '#aaa' }}>{lbl}</div>
+                        <div style={{ fontSize: 'clamp(11px,.9vw,13px)', lineHeight: 1.55, color: ok ? '#e0f4ff' : '#6da9c8' }}>{txt}</div>
                       </div>
-                      <div style={hStyles.testiQuote}>{t.quote}</div>
                     </div>
+                  ))}
+                </div>
+                <div style={{ marginTop: 16, paddingTop: 14, borderTop: `1px solid ${t.color}33`, fontStyle: 'italic', fontSize: 'clamp(11px,.9vw,13px)', lineHeight: 1.65, fontFamily: 'Rajdhani', fontWeight: 500, color: t.color, display: 'flex', alignItems: 'flex-start', gap: 6 }}>
+                  <FaQuoteLeft style={{ marginRight: 6, opacity: .6, flexShrink: 0, marginTop: 2 }} />{t.quote}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <Hint />
+      </section>
+
+      {/* ════════════════ MODAL ════════════════ */}
+      {selectedTeacher && (
+        <div style={{ ...S.overlay, opacity: modalVisible ? 1 : 0, pointerEvents: modalVisible ? 'all' : 'none' }} onClick={close}>
+          <div style={{ ...S.modal, transform: modalVisible ? 'scale(1) translateY(0)' : 'scale(0.92) translateY(40px)' }} onClick={e => e.stopPropagation()}>
+            <button style={S.mClose} onClick={close}>✕</button>
+            <div style={{ ...S.modalGlow, background: selectedTeacher.grad }} />
+            <div ref={modalContentRef} style={{ position: 'relative', zIndex: 2 }}>
+              <div style={{ width: 120, height: 120, borderRadius: '50%', background: selectedTeacher.grad, margin: '0 auto 24px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '3.6rem', boxShadow: `0 0 40px ${selectedTeacher.color}55` }}>{selectedTeacher.emoji}</div>
+              <h2 style={{ fontFamily: 'Orbitron,monospace', fontSize: '1.8rem', textAlign: 'center', color: '#fff', marginBottom: 8 }}>{selectedTeacher.name}</h2>
+              <div style={{ textAlign: 'center', fontFamily: 'Rajdhani', fontSize: '1.1rem', fontWeight: 800, letterSpacing: '2px', textTransform: 'uppercase', marginBottom: 20, color: selectedTeacher.color }}>{selectedTeacher.role}</div>
+
+              <p style={{ color: '#6da9c8', lineHeight: 1.85, marginBottom: 32, fontSize: '1.05rem', textAlign: 'center', padding: '0 20px' }}>{selectedTeacher.bio}</p>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 30 }}>
+                {[["O'quvchilar", selectedTeacher.students], ['Tajriba (yil)', selectedTeacher.exp], ['Kompaniya', selectedTeacher.company], ['Reyting', selectedTeacher.rating + '/5']].map(([l, v]) => (
+                  <div key={l} style={{ background: 'rgba(255,255,255,0.03)', border: `1px solid ${selectedTeacher.color}33`, borderRadius: 18, padding: 20, textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, transition: 'all 0.3s', cursor: 'default' }}>
+                    <span style={{ fontFamily: 'Orbitron,monospace', fontSize: '2rem', fontWeight: 900, color: selectedTeacher.color }}>{v}</span>
+                    <span style={{ fontSize: '.9rem', color: '#6da9c8', fontWeight: 500 }}>{l}</span>
                   </div>
                 ))}
               </div>
-            </div>
-          </div>
 
-        </div>{/* end track */}
-      </div>{/* end wrapper */}
-
-      {/* ══════════════════════════════
-          TEACHER MODAL
-      ══════════════════════════════ */}
-      {selectedTeacher && (
-        <div
-          style={{ ...hStyles.modalOverlay, opacity: modalVisible ? 1 : 0, pointerEvents: modalVisible ? 'all' : 'none' }}
-          onClick={closeModal}
-        >
-          <div
-            style={{ ...hStyles.modal, transform: modalVisible ? 'scale(1) translateY(0)' : 'scale(.85) translateY(40px)' }}
-            onClick={e => e.stopPropagation()}
-          >
-            <button style={hStyles.modalClose} onClick={closeModal}>✕</button>
-            <div style={{ ...hStyles.modalAv, background: selectedTeacher.grad }}>{selectedTeacher.emoji}</div>
-            <h2 style={hStyles.modalName}>{selectedTeacher.name}</h2>
-            <div style={{ ...hStyles.modalRole, color: selectedTeacher.color }}>{selectedTeacher.role}</div>
-            <p style={hStyles.modalBio}>{selectedTeacher.bio}</p>
-            <div style={hStyles.modalAchs}>
-              {[["O'quvchilar",selectedTeacher.students],['Tajriba (yil)',selectedTeacher.exp],['Kompaniya',selectedTeacher.company],['Reyting',selectedTeacher.rating+'/5']].map(([l,v]) => (
-                <div key={l} style={hStyles.modalAch}>
-                  <span style={{ ...hStyles.achNum, color: selectedTeacher.color }}>{v}</span>
-                  <span style={hStyles.achLbl}>{l}</span>
-                </div>
-              ))}
-            </div>
-            <div style={hStyles.modalSkills}>
-              {selectedTeacher.skills.map(s => (
-                <span key={s} style={{ ...hStyles.sk, color: selectedTeacher.color, borderColor: `${selectedTeacher.color}44`, padding: '6px 16px', fontSize: 13 }}>{s}</span>
-              ))}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, justifyContent: 'center' }}>
+                {selectedTeacher.skills.map(sk => (
+                  <span key={sk} style={{ fontSize: 13, padding: '10px 22px', borderRadius: 8, border: `1px solid ${selectedTeacher.color}55`, background: 'rgba(255,255,255,.05)', fontFamily: 'Rajdhani', fontWeight: 700, color: selectedTeacher.color, letterSpacing: '1px' }}>{sk}</span>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -312,67 +340,38 @@ export default function HorizontalScrollSection() {
   )
 }
 
-/* ═══════════════════════════════════════════════
-   STYLES
-═══════════════════════════════════════════════ */
-const hStyles = {
-  wrapper:        { position: 'relative', overflow: 'hidden', zIndex: 10 },
-  track:          { display: 'flex', flexDirection: 'row', alignItems: 'stretch', willChange: 'transform' },
-  panel:          { position: 'relative', minWidth: '100vw', height: '100vh', flexShrink: 0, display: 'flex', alignItems: 'center', overflow: 'hidden' },
-  introPanel:     { minWidth: '60vw', background: 'linear-gradient(135deg, rgba(0,20,50,.9), rgba(0,10,30,.95))', borderRight: '1px solid rgba(0,229,255,.1)' },
-  panelBgGrad:    { position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0 },
-  introPanelInner:{ padding: '0 80px', position: 'relative', zIndex: 2 },
-  panelLabel:     { fontFamily: 'Orbitron, monospace', fontSize: 11, letterSpacing: 4, color: '#00C9B1', textTransform: 'uppercase', marginBottom: 16, padding: '5px 14px', borderLeft: '3px solid #00C9B1', display: 'inline-block' },
-  panelH2:        { fontFamily: 'Orbitron, monospace', fontSize: 'clamp(28px,3.5vw,52px)', fontWeight: 900, lineHeight: 1.1, marginBottom: 18, color: '#fff' },
-  panelSub:       { color: '#6da9c8', fontSize: 15, maxWidth: 440, lineHeight: 1.65, marginBottom: 40 },
-  scrollHint:     { display: 'flex', alignItems: 'center', gap: 12, marginTop: 24 },
-  scrollArrow:    { fontSize: 28, color: '#00C9B1', display: 'inline-block' },
-  panelHeader:    { marginBottom: 48, maxWidth: 700 },
-  coursesGrid:    { display: 'grid', gridTemplateColumns: 'repeat(4, 320px)', gridTemplateRows: 'repeat(2, 1fr)', gap: 22, padding: '0 56px', height: '85vh', alignContent: 'center', position: 'relative', zIndex: 2 },
-  courseCard:     { padding: '26px 24px', cursor: 'pointer', position: 'relative', background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.08)', backdropFilter: 'blur(20px)', borderRadius: 20, overflow: 'hidden', transition: 'all .4s' },
-  cardImgOverlay: { position: 'absolute', inset: 0, borderRadius: 20, backgroundSize: 'cover', backgroundPosition: 'center', opacity: .07 },
-  glowBar:        { position: 'absolute', top: 0, left: 0, right: 0, height: 3, borderRadius: '20px 20px 0 0', opacity: .7, zIndex: 4 },
-  durBadge:       { position: 'absolute', top: 18, right: 18, textAlign: 'right' },
-  badge:          { display: 'inline-block', padding: '4px 12px', borderRadius: 20, fontSize: 10, fontWeight: 700, letterSpacing: 1, marginBottom: 10, background: 'rgba(255,255,255,.05)', border: '1px solid', fontFamily: 'Rajdhani' },
-  cardTitle:      { fontFamily: 'Orbitron, monospace', fontSize: 14, fontWeight: 900, color: '#fff', marginBottom: 6 },
-  cardSub:        { fontSize: 12, fontWeight: 600, marginBottom: 10, fontFamily: 'Rajdhani' },
-  cardDesc:       { fontSize: 12, color: '#6da9c8', lineHeight: 1.6, marginBottom: 14 },
-  priceTag:       { fontFamily: 'Orbitron, monospace', fontSize: 12, fontWeight: 700, color: '#ffd700' },
-  teachersGrid:   { display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 20 },
-  teacherCard:    { padding: '24px 18px', textAlign: 'center', cursor: 'pointer', transition: 'all .4s', position: 'relative' },
-  tAvRing:        { position: 'absolute', inset: -4, borderRadius: '50%', border: '2px solid rgba(0,201,177,.35)', width: 84, height: 84 },
-  tAv:            { width: 80, height: 80, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2.2rem', margin: '0 auto', position: 'relative', zIndex: 1 },
-  tBadge:         { position: 'absolute', top: -4, right: -4, background: 'rgba(0,0,0,.8)', border: '1px solid rgba(0,201,177,.3)', borderRadius: 20, padding: '3px 8px', fontSize: 9, color: '#00C9B1', fontWeight: 700, backdropFilter: 'blur(8px)' },
-  tName:          { fontFamily: 'Orbitron, monospace', fontSize: 12, fontWeight: 900, color: '#fff', marginBottom: 4, marginTop: 14 },
-  tRole:          { fontSize: 11, fontWeight: 600, marginBottom: 10, fontFamily: 'Rajdhani', letterSpacing: 1 },
-  tRating:        { fontSize: 12, marginBottom: 10, display: 'flex', alignItems: 'center', gap: 4, justifyContent: 'center' },
-  tSkills:        { display: 'flex', flexWrap: 'wrap', gap: 4, justifyContent: 'center', marginBottom: 12 },
-  sk:             { fontSize: 10, border: '1px solid', padding: '3px 8px', borderRadius: 4, fontWeight: 600, background: 'rgba(255,255,255,.04)' },
-  tFooter:        { display: 'flex', justifyContent: 'space-around', paddingTop: 12, borderTop: '1px solid rgba(0,201,177,.1)', marginTop: 8 },
-  tfNum:          { fontFamily: 'Orbitron, monospace', fontSize: 13, fontWeight: 700 },
-  tfLbl:          { fontSize: 9, color: '#6da9c8', textTransform: 'uppercase', letterSpacing: 1 },
-  clickHint:      { display: 'inline-block', marginTop: 12, padding: '5px 14px', borderRadius: 20, fontSize: 10, fontFamily: 'Rajdhani', fontWeight: 700, letterSpacing: .5, background: 'rgba(0,201,177,.08)', border: '1px solid rgba(0,201,177,.2)', color: '#00C9B1' },
-  testiGrid:      { display: 'grid', gridTemplateColumns: 'repeat(4, 320px)', gap: 22, alignItems: 'start' },
-  testiCard:      { padding: '28px 24px', cursor: 'default', position: 'relative' },
-  testiAv:        { width: 56, height: 56, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.6rem', marginBottom: 12 },
-  testiName:      { fontFamily: 'Rajdhani', fontWeight: 700, fontSize: 15, color: '#fff' },
-  testiRole:      { fontSize: 11, color: '#00C9B1', marginBottom: 6 },
-  stars:          { color: '#ffd700', fontSize: 14, letterSpacing: 2 },
-  tlItem:         { display: 'flex', gap: 12, marginBottom: 12, alignItems: 'flex-start' },
-  tlDot:          { width: 12, height: 12, borderRadius: '50%', flexShrink: 0, marginTop: 3 },
-  tlLbl:          { fontWeight: 700, fontSize: 11, color: '#fff', marginBottom: 2 },
-  tlTxt:          { fontSize: 11, color: '#6da9c8', lineHeight: 1.55 },
-  testiQuote:     { color: '#00C9B1', fontStyle: 'italic', fontSize: 12, marginTop: 16, paddingTop: 14, borderTop: '1px solid rgba(0,201,177,.12)', lineHeight: 1.65 },
-  modalOverlay:   { position: 'fixed', inset: 0, zIndex: 9000, background: 'rgba(0,0,0,.9)', backdropFilter: 'blur(18px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24, transition: 'opacity .4s' },
-  modal:          { background: 'linear-gradient(135deg,rgba(4,18,46,.97),rgba(2,8,24,.97))', border: '1px solid rgba(0,201,177,.25)', borderRadius: 22, padding: '48px 44px', maxWidth: 640, width: '100%', position: 'relative', transition: 'transform .4s cubic-bezier(.2,1.4,.5,1), opacity .4s', boxShadow: '0 30px 80px rgba(0,0,0,.6), 0 0 60px rgba(0,201,177,.1)', maxHeight: '90vh', overflowY: 'auto' },
-  modalClose:     { position: 'absolute', top: 16, right: 18, background: 'none', border: 'none', color: '#6da9c8', fontSize: '1.4rem', cursor: 'pointer', width: 34, height: 34, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' },
-  modalAv:        { width: 100, height: 100, borderRadius: '50%', margin: '0 auto 18px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '3rem', boxShadow: '0 0 30px rgba(0,201,177,.4), 0 0 60px rgba(0,201,177,.2)' },
-  modalName:      { fontFamily: 'Orbitron, monospace', fontSize: '1.4rem', textAlign: 'center', color: '#fff', marginBottom: 5 },
-  modalRole:      { textAlign: 'center', fontFamily: 'Rajdhani', fontSize: '.9rem', letterSpacing: 1, textTransform: 'uppercase', marginBottom: 20 },
-  modalBio:       { color: '#6da9c8', lineHeight: 1.75, marginBottom: 24, fontSize: '.92rem', textAlign: 'center' },
-  modalAchs:      { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 20 },
-  modalAch:       { background: 'rgba(0,201,177,.05)', border: '1px solid rgba(0,201,177,.12)', borderRadius: 12, padding: '14px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' },
-  achNum:         { fontFamily: 'Orbitron, monospace', fontSize: '1.6rem', display: 'block', marginBottom: 4 },
-  achLbl:         { fontSize: '.75rem', color: '#6da9c8' },
-  modalSkills:    { display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'center' },
+function Hint() {
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '6px 64px 18px', position: 'relative', zIndex: 5 }}>
+      <span style={{ fontSize: '1.6rem', color: '#00C9B1', animation: 'arrowBounce 1.5s ease-in-out infinite' }}>→</span>
+      <span style={{ fontFamily: 'Rajdhani', fontWeight: 700, fontSize: 13, color: '#6da9c8', letterSpacing: '2px', textTransform: 'uppercase' }}>Scroll qiling</span>
+    </div>
+  )
+}
+
+const S = {
+  pin: { position: 'relative', height: '100vh', overflow: 'hidden', background: 'linear-gradient(160deg,#020b18,#031020)', borderTop: '1px solid rgba(0,201,177,.12)', display: 'flex', flexDirection: 'column', zIndex: 10 },
+  orb: { position: 'absolute', width: 600, height: 600, borderRadius: '50%', filter: 'blur(90px)', opacity: .22, pointerEvents: 'none', zIndex: 0 },
+  head: { padding: '44px 64px 14px', position: 'relative', zIndex: 5, flexShrink: 0 },
+  tag: { display: 'inline-block', fontFamily: 'Orbitron,monospace', fontSize: 12, letterSpacing: '5px', color: '#00C9B1', textTransform: 'uppercase', marginBottom: 14, padding: '6px 16px', borderLeft: '4px solid #00C9B1', fontWeight: 700, background: 'rgba(0,201,177,.07)' },
+  h2: { fontFamily: 'Orbitron,monospace', fontSize: 'clamp(24px,3.4vw,50px)', fontWeight: 900, lineHeight: 1.1, color: '#fff', margin: '0 0 10px', transformOrigin: 'left top' },
+  sub: { color: '#6da9c8', fontSize: 'clamp(13px,1.4vw,17px)', fontFamily: 'Rajdhani,sans-serif', fontWeight: 500 },
+  viewport: { flex: 1, overflow: 'hidden', padding: '14px 64px 0', position: 'relative', zIndex: 4, display: 'flex', alignItems: 'center' },
+  track: { display: 'flex', gap: 22, alignItems: 'stretch', willChange: 'transform', paddingRight: 120 },
+  topBar: { position: 'absolute', top: 0, left: 0, right: 0, height: 4, borderRadius: '22px 22px 0 0', zIndex: 4, transition: 'opacity .3s' },
+  iconWrap: { width: 64, height: 64, borderRadius: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 8 },
+  badge: { display: 'inline-block', padding: '4px 12px', borderRadius: 20, fontSize: 11, fontWeight: 700, letterSpacing: '1px', background: 'rgba(255,255,255,.04)', border: '1px solid', fontFamily: 'Rajdhani' },
+  cCard: { flexShrink: 0, width: 'clamp(260px,19vw,310px)', padding: '26px 22px', cursor: 'pointer', position: 'relative', background: 'rgba(4,16,44,.95)', border: '1.5px solid rgba(255,255,255,.1)', borderRadius: 22, display: 'flex', flexDirection: 'column', gap: 10 },
+  cTitle: { fontFamily: 'Orbitron,monospace', fontSize: 'clamp(12px,1vw,15px)', fontWeight: 900, color: '#fff' },
+  cDesc: { fontSize: 'clamp(11px,.95vw,13px)', color: '#6da9c8', lineHeight: 1.65, flex: 1 },
+  tCard: { flexShrink: 0, width: 'clamp(220px,16vw,270px)', padding: '24px 18px 18px', textAlign: 'center', cursor: 'pointer', position: 'relative', background: 'rgba(4,16,44,.95)', border: '1.5px solid rgba(255,255,255,.1)', borderRadius: 22 },
+  avRing: { position: 'absolute', inset: '-4px', borderRadius: '50%', border: '2px solid', width: 90, height: 90, left: '50%', top: 0, transform: 'translateX(-50%)', pointerEvents: 'none' },
+  av: { width: 82, height: 82, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2.4rem', margin: '0 auto', position: 'relative', zIndex: 1, boxShadow: '0 8px 32px rgba(0,0,0,.5)' },
+  tBadge: { position: 'absolute', top: -6, right: 'calc(50% - 68px)', background: 'rgba(2,11,24,.95)', border: '1px solid', borderRadius: 20, padding: '3px 10px', fontSize: 10, fontWeight: 700, fontFamily: 'Orbitron,monospace', letterSpacing: '.5px', whiteSpace: 'nowrap' },
+  stCard: { flexShrink: 0, width: 'clamp(290px,22vw,360px)', padding: '30px 26px', position: 'relative', cursor: 'default', background: 'rgba(4,16,44,.95)', border: '1.5px solid rgba(255,255,255,.1)', borderRadius: 22 },
+  salBadge: { position: 'absolute', top: 20, right: 20, padding: '7px 18px', borderRadius: 30, fontFamily: 'Orbitron,monospace', fontSize: 14, fontWeight: 900, color: '#020b18', letterSpacing: '1px', boxShadow: '0 4px 20px rgba(0,0,0,.4)' },
+  overlay: { position: 'fixed', inset: 0, zIndex: 9000, background: 'rgba(0,0,0,.93)', backdropFilter: 'blur(24px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24, transition: 'opacity .35s' },
+  modal: { background: 'linear-gradient(135deg,rgba(4,18,46,.99),rgba(2,8,24,.99))', border: '1px solid rgba(0,201,177,.3)', borderRadius: 28, padding: '52px 48px', maxWidth: 700, width: '100%', position: 'relative', transition: 'transform .4s cubic-bezier(.2,1.4,.5,1)', boxShadow: '0 40px 100px rgba(0,0,0,.8)', maxHeight: '90vh', overflowY: 'auto' },
+  mClose: { position: 'absolute', top: 18, right: 20, background: 'rgba(255,255,255,.08)', border: '1px solid rgba(255,255,255,.15)', color: '#aaa', fontSize: '1.2rem', cursor: 'pointer', width: 36, height: 36, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 },
+  modalGlow: { position: 'absolute', top: 0, left: 0, right: 0, height: 6, borderRadius: '28px 28px 0 0', opacity: 0.9, zIndex: 1 },
 }
