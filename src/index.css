@@ -107,3 +107,29 @@ section { position: relative; z-index: 10; }
   box-shadow: 0 28px 64px -12px rgba(0,229,255,.25),
               0 0 0 1px rgba(255,255,255,.05) inset;
 }
+
+/* ── FAB pulse animation ── */
+@keyframes fabPulse {
+  0%, 100% { transform: scale(1); opacity: .55; }
+  50%       { transform: scale(1.6); opacity: 0; }
+}
+
+/* ── FAB hover scale ── */
+.fab-btn:hover {
+  transform: scale(1.12) !important;
+  filter: brightness(1.15);
+}
+
+/* ── Nav link hover ── */
+.nav-link:hover {
+  color: #00C9B1 !important;
+  background: rgba(0,201,177,.08) !important;
+}
+
+/* ── Preloader letter perspective ── */
+.preloader-letter { display: inline-block; }
+
+/* ── Gradient scrollbar ── */
+::-webkit-scrollbar        { width: 4px; }
+::-webkit-scrollbar-track  { background: #010810; }
+::-webkit-scrollbar-thumb  { background: linear-gradient(180deg,#00C9B1,#00E5FF); border-radius: 4px; }
