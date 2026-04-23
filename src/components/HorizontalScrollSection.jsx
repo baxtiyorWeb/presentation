@@ -3,7 +3,8 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import {
   FaCode, FaServer, FaShieldAlt, FaPaintBrush, FaGlobeAmericas, FaBrain,
-  FaDesktop, FaComments, FaStar, FaQuoteLeft
+  FaDesktop, FaComments, FaStar, FaQuoteLeft, FaTimes, FaGraduationCap,
+  FaLinkedin, FaTelegram, FaChalkboardTeacher, FaAward, FaUsers
 } from 'react-icons/fa'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -20,20 +21,101 @@ const COURSES = [
 ]
 
 const TEACHERS = [
-  { name: 'Refatbek Arolov', role: 'Direktor', badge: '👔 DIREKTOR', emoji: '🧑‍💼', rating: '5.0', color: '#00C9B1', grad: 'linear-gradient(135deg,#00C9B1,#00E5FF)', skills: ['Kompyuter savodxonligi', 'Prompt Engineering'], students: '1000+', exp: '10+', company: 'Joylinks', bio: 'Joylinks IT va Biznes Akademiyasi direktori.' },
-  { name: 'Behruz Karimov', role: "O'qituvchi", badge: '💻 IT', emoji: '👨‍💻', rating: '4.9', color: '#FFD166', grad: 'linear-gradient(135deg,#FFD166,#FF9F43)', skills: ['Kompyuter savodxonligi'], students: '500+', exp: '5+', company: 'Joylinks', bio: "Kompyuter savodxonligi bo'yicha mutaxassis." },
-  { name: 'Umid Mamatraximov', role: "O'qituvchi", badge: 'FRONT-END', emoji: '⚡', rating: '4.9', color: '#FF6B6B', grad: 'linear-gradient(135deg,#E74C3C,#C0392B)', skills: ['Front-end', 'IT Foundation'], students: '300+', exp: '4+', company: 'Joylinks', bio: "Front-end dasturlash bo'yicha o'qituvchi." },
-  { name: 'Jahongir Omonov', role: "O'qituvchi", badge: 'BACK-END', emoji: '⚙️', rating: '4.9', color: '#1dd1a1', grad: 'linear-gradient(135deg,#1dd1a1,#00b894)', skills: ['Back-end', 'IT Foundation'], students: '300+', exp: '4+', company: 'Joylinks', bio: "Serverlar va ma'lumotlar bazasi ustasi." },
-  { name: 'Samandar Qurbonov', role: "O'qituvchi", badge: 'FRONT-END', emoji: '🖥️', rating: '4.8', color: '#a29bfe', grad: 'linear-gradient(135deg,#5F27CD,#8E44AD)', skills: ['Front-end', 'Kompyuter savodxonligi'], students: '400+', exp: '4+', company: 'Joylinks', bio: "Web dizayn va front-end bo'yicha ustoz." },
-  { name: 'Elshodbek Rakhmonov', role: "O'qituvchi", badge: 'FOUNDATION', emoji: '🚀', rating: '4.8', color: '#ff9ff3', grad: 'linear-gradient(135deg,#f368e0,#ff9ff3)', skills: ['IT Foundation'], students: '200+', exp: '3+', company: 'Joylinks', bio: "IT sohasiga kirib kelayotganlar uchun murabbiy." },
-  { name: "Nafisa Ro'ziyeva", role: "O'qituvchi", badge: 'SAVODXONLIK', emoji: '👩‍🏫', rating: '4.9', color: '#48dbfb', grad: 'linear-gradient(135deg,#0abde3,#48dbfb)', skills: ['Kompyuter savodxonligi'], students: '600+', exp: '6+', company: 'Joylinks', bio: "Ofis dasturlari va kompyuter sirlari o'rgatadi." },
-  { name: 'Abbos Xushboqov', role: "O'qituvchi", badge: 'SECURITY', emoji: '🛡️', rating: '5.0', color: '#ff6b6b', grad: 'linear-gradient(135deg,#ee5253,#ff6b6b)', skills: ['Kiberxavfsizlik'], students: '150+', exp: '5+', company: 'Joylinks', bio: "Axborot xavfsizligi bo'yicha professional mutaxassis." },
-  { name: 'Dilnoza Shamshiddinova', role: "O'qituvchi", badge: 'ENGLISH', emoji: '🇬🇧', rating: '4.9', color: '#feca57', grad: 'linear-gradient(135deg,#ff9f43,#feca57)', skills: ['Ingliz Tili'], students: '500+', exp: '5+', company: 'Joylinks', bio: "IT mutaxassislari uchun ingliz tili darslari olib boradi." },
+  {
+    name: 'Refatbek Arolov', role: 'Direktor', badge: '👔 DIREKTOR', emoji: '🧑‍💼',
+    rating: '5.0', color: '#00C9B1', grad: 'linear-gradient(135deg,#00C9B1,#00E5FF)',
+    skills: ['Kompyuter savodxonligi', 'Prompt Engineering', 'Biznes strategiya', 'Liderlik'],
+    students: '1000+', exp: '10+', company: 'Joylinks',
+    bio: "Joylinks IT va Biznes Akademiyasining asoschisi va direktori. 10+ yil davomida O'zbekiston IT ta'lim sohasida inqilob qildi.",
+    fullBio: "Refatbek Arolov — Joylinks IT va Biznes Akademiyasining muassisi va bosh direktori. U 10 yildan ortiq vaqt davomida O'zbekistonda IT ta'limini rivojlantirish yo'lida mehnат qilmoqda. Uning rahbarligida 1000+ talaba kasbiy sohalarda muvaffaqiyatga erishdi. Kompyuter savodxonligi va Prompt Engineering bo'yicha original metodologiya ishlab chiqqan.",
+    achievements: ["Joylinks IT Academy asoschisi", "1000+ o'quvchi tayyorladi", "Xalqaro hamkorliklar o'rnatdi", "Innovatsion o'qitish metodlari muallifi"],
+    contact: { telegram: '@refatbek_arolov', email: 'direktor@joylinks.uz' }
+  },
+  {
+    name: 'Behruz Karimov', role: "O'qituvchi", badge: '💻 IT', emoji: '👨‍💻',
+    rating: '4.9', color: '#FFD166', grad: 'linear-gradient(135deg,#FFD166,#FF9F43)',
+    skills: ['MS Word', 'MS Excel', 'PowerPoint', 'Internet', 'Google Tools'],
+    students: '500+', exp: '5+', company: 'Joylinks',
+    bio: "Kompyuter savodxonligi bo'yicha tajribali o'qituvchi. 5 yildan ziyod Joylinks akademiyasida faoliyat ko'rsatmoqda.",
+    fullBio: "Behruz Karimov — Kompyuter savodxonligi yo'nalishi bo'yicha sertifikatlangan mutaxassis. U Microsoft Office dasturlari, internet texnologiyalari va Google xizmatlari bo'yicha 500+ o'quvchiga ta'lim berdi. Har bir o'quvchiga individual yondashuvi uni talabalar orasida eng sevimli ustoz qildi.",
+    achievements: ["Microsoft Office mutaxassisi", "500+ bitiruvchi", "Eng yaxshi o'qituvchi mukofoti 2023", "Yangi o'qitish dasturlarini ishlab chiqdи"],
+    contact: { telegram: '@behruz_karimov', email: 'behruz@joylinks.uz' }
+  },
+  {
+    name: 'Umid Mamatraximov', role: "O'qituvchi", badge: 'FRONT-END', emoji: '⚡',
+    rating: '4.9', color: '#FF6B6B', grad: 'linear-gradient(135deg,#E74C3C,#C0392B)',
+    skills: ['HTML5', 'CSS3', 'JavaScript', 'React.js', 'IT Foundation'],
+    students: '300+', exp: '4+', company: 'Joylinks',
+    bio: "Front-end dasturlash va IT Foundation yo'nalishlari bo'yicha professional o'qituvchi.",
+    fullBio: "Umid Mamatraximov — zamonaviy web texnologiyalar bo'yicha yosh va energiyali mutaxassis. U HTML5, CSS3, JavaScript va React.js bo'yicha 300+ talabaga amaliy ko'nikmalar o'rgatdi. Uning darslarida nazariya va amaliyot uyg'unligi o'quvchilarni tez sur'atda o'stiradi.",
+    achievements: ["React.js sertifikatlangan dasturchi", "300+ veb-dasturchilar tayyorladi", "IT Foundation dasturini ishlab chiqdi", "Talabalar keysi: 80% birinchi loyiha"],
+    contact: { telegram: '@umid_front', email: 'umid@joylinks.uz' }
+  },
+  {
+    name: 'Jahongir Omonov', role: "O'qituvchi", badge: 'BACK-END', emoji: '⚙️',
+    rating: '4.9', color: '#1dd1a1', grad: 'linear-gradient(135deg,#1dd1a1,#00b894)',
+    skills: ['Python', 'Django', 'REST API', 'PostgreSQL', 'Docker'],
+    students: '300+', exp: '4+', company: 'Joylinks',
+    bio: "Server tomonidagi dasturlash va ma'lumotlar bazasi bo'yicha kuchli mutaxassis.",
+    fullBio: "Jahongir Omonov — backend texnologiyalari bo'yicha chuqur bilimga ega dasturchi-o'qituvchi. Python, Django va REST API orqali real tarmoq loyihalarini yaratishni o'rgatadi. PostgreSQL va Docker ko'nikmalarni o'quvchilarga muvaffaqiyatli o'tkazadi. Uning talabalari bugun Samarqand va Toshkentning yetakchi kompaniyalarida ishlashmoqda.",
+    achievements: ["Django sertifikatlangan mutaxassis", "300+ backend dasturchilar", "Docker & DevOps kursini yaratdi", "Server arxitekturasi bo'yicha loyihalar"],
+    contact: { telegram: '@jahongir_backend', email: 'jahongir@joylinks.uz' }
+  },
+  {
+    name: 'Samandar Qurbonov', role: "O'qituvchi", badge: 'FRONT-END', emoji: '🖥️',
+    rating: '4.8', color: '#a29bfe', grad: 'linear-gradient(135deg,#5F27CD,#8E44AD)',
+    skills: ['HTML/CSS', 'JavaScript', 'Figma', 'Responsive Design', 'UI/UX'],
+    students: '400+', exp: '4+', company: 'Joylinks',
+    bio: "Web dizayn va front-end dasturlash sohasida keng tajribaga ega ustoz.",
+    fullBio: "Samandar Qurbonov — web dizayn va front-end yo'nalishining ustasi. Figma, Adobe XD va responsive dizayn bo'yicha 400+ talabaga bilim ulashdi. Uning o'quvchilari faqat kod yozibgina qolmay, zamonaviy va chiroyli veb-interfeys yaratishni ham o'rganadi.",
+    achievements: ["Figma sertifikatlangan dizayner", "400+ web dasturchilar tayyorladi", "UI/UX kursini ishlab chiqdi", "30+ real veb-sayt loyihalariga rahbarlik"],
+    contact: { telegram: '@samandar_web', email: 'samandar@joylinks.uz' }
+  },
+  {
+    name: 'Elshodbek Rakhmonov', role: "O'qituvchi", badge: 'FOUNDATION', emoji: '🚀',
+    rating: '4.8', color: '#ff9ff3', grad: 'linear-gradient(135deg,#f368e0,#ff9ff3)',
+    skills: ['IT Asoslari', 'Algoritmlar', 'Mantiqiy Fikrlash', 'Python Boshlang\'ich'],
+    students: '200+', exp: '3+', company: 'Joylinks',
+    bio: "IT sohasiga yangi kirayotganlar uchun eng yaxshi murabbiy. Noldan IT ga yo'l ko'rsatadi.",
+    fullBio: "Elshodbek Rakhmonov — IT Foundation yo'nalishining jonkuyar o'qituvchisi. U IT bo'yicha hech qanday bilimga ega bo'lmagan talabalarni 3-4 oy ichida asosiy texnik ko'nikmalar bilan qurollantiradi. Mantiqiy fikrlash va algoritmik tafakkurni rivojlantirishda maxsus metodologiyadan foydalanadi.",
+    achievements: ["IT Foundation metodologiyasi muallifi", "200+ IT sohibi tayyorladi", "0-dan IT ga yo'l dasturi", "Yosh o'qituvchilar orasida eng ijodiy"],
+    contact: { telegram: '@elshod_it', email: 'elshod@joylinks.uz' }
+  },
+  {
+    name: "Nafisa Ro'ziyeva", role: "O'qituvchi", badge: 'SAVODXONLIK', emoji: '👩‍🏫',
+    rating: '4.9', color: '#48dbfb', grad: 'linear-gradient(135deg,#0abde3,#48dbfb)',
+    skills: ['MS Excel (Advanced)', 'MS Word', '1C Dasturi', 'Internet', 'Email'],
+    students: '600+', exp: '6+', company: 'Joylinks',
+    bio: "Kompyuter savodxonligi bo'yicha Joylinks akademiyasidagi eng ko'p tajribaga ega ustoz.",
+    fullBio: "Nafisa Ro'ziyeva — Joylinks akademiyasining eng tajribali o'qituvchilaridan biri. 6 yil davomida 600+ talabaga kompyuter savodxonligini o'rgatdi. MS Excel ning murakkab formulalari, 1C dasturi va raqamli ko'nikmalar bo'yicha chuqur bilimga ega. Xotin-qizlar va ayollar uchun maxsus guruhlar tashkil qiladi.",
+    achievements: ["600+ talabani sertifikatladi", "Ayollar IT guruhlari tashkilotchisi", "MS Excel Expert sertifikati", "Eng ko'p tavsiya qilingan o'qituvchi"],
+    contact: { telegram: '@nafisa_teacher', email: 'nafisa@joylinks.uz' }
+  },
+  {
+    name: 'Abbos Xushboqov', role: "O'qituvchi", badge: '🛡️ SECURITY', emoji: '🛡️',
+    rating: '5.0', color: '#ff6b6b', grad: 'linear-gradient(135deg,#ee5253,#ff6b6b)',
+    skills: ['Ethical Hacking', 'Penetration Testing', 'Linux', 'OWASP', 'Kriptografiya'],
+    students: '150+', exp: '5+', company: 'Joylinks',
+    bio: "Kiberxavfsizlik sohasida maxsus sertifikatga ega bo'lgan professional mutaxassis.",
+    fullBio: "Abbos Xushboqov — kiberxavfsizlik sohasining tajribali mutaxassisi. CEH (Certified Ethical Hacker) sertifikatiga ega bo'lib, 5 yil davomida davlat va xususiy tarmoqlarni himoya qilishda ishtirok etgan. Joylinks akademiyasida 150+ talabaga axborot xavfsizligi sir-asrorlarini o'rgatmoqda.",
+    achievements: ["CEH (Certified Ethical Hacker) sertifikati", "150+ kiberxavfsizlik mutaxassislari", "Penetration Testing kursi muallifi", "Milliy kiberxavfsizlik musobaqasi g'olibi"],
+    contact: { telegram: '@abbos_security', email: 'abbos@joylinks.uz' }
+  },
+  {
+    name: 'Dilnoza Shamshiddinova', role: "O'qituvchi", badge: '🇬🇧 ENGLISH', emoji: '🇬🇧',
+    rating: '4.9', color: '#feca57', grad: 'linear-gradient(135deg,#ff9f43,#feca57)',
+    skills: ['IELTS tayyorgarlik', 'IT English', 'Business English', 'Speaking Club'],
+    students: '500+', exp: '5+', company: 'Joylinks',
+    bio: "IT mutaxassislari uchun ingliz tili — texnik lug'at va professional muloqot.",
+    fullBio: "Dilnoza Shamshiddinova — ingliz tilini IT kontekstida o'rgatishda ixtisoslashgan pedagog. IELTS Academic va General bo'yicha 500+ talabani muvaffaqiyatga olib chiqdi. Texnik ingliz tili, intervyu tayyorgarlik va xalqaro ish muhiti uchun kommunikatsiya ko'nikmalarini rivojlantiradi.",
+    achievements: ["IELTS Band 8.0 ball egasi", "500+ talaba IELTS maqsadiga yetdi", "IT English metodologiyasi muallifi", "Xalqaro konferensiyalarda qatnashdi"],
+    contact: { telegram: '@dilnoza_english', email: 'dilnoza@joylinks.uz' }
+  },
 ]
 
 const TESTIMONIALS = [
   { name: 'Ozodbek Ruziboyev', role: 'Bitiruvchi', emoji: '👨‍🎓', color: '#00C9B1', grad: 'linear-gradient(135deg,#00C9B1,#00E5FF)', salary: 'MUVAFFAQIYATLI', start: "Noldan boshladi", mid: "Jadal o'rganish va loyihalar", end: "Hozirda kuchli mutaxassis", quote: '"Joylinks men uchun kelajak eshiklarini ochdi!"', rating: 5 },
-  { name: 'Mamatov Musulmon', role: 'Bitiruvchi', emoji: '🚀', color: '#FFD166', grad: 'linear-gradient(135deg,#FFD166,#FF9F43)', salary: 'KURS BITIRUVCHISI', start: "IT haqida tushuncham yo'q edi", mid: "Ajoyib muhitda ta'lim", end: "Hozirda dasturchi bo'lib yetishdi", quote: "Eng zo\\'r ustozlar va muhit shu yerda!", rating: 5 },
+  { name: 'Mamatov Musulmon', role: 'Bitiruvchi', emoji: '🚀', color: '#FFD166', grad: 'linear-gradient(135deg,#FFD166,#FF9F43)', salary: 'KURS BITIRUVCHISI', start: "IT haqida tushuncham yo'q edi", mid: "Ajoyib muhitda ta'lim", end: "Hozirda dasturchi bo'lib yetishdi", quote: '"Eng zo\'r ustozlar va muhit shu yerda!"', rating: 5 },
   { name: 'Quldoshev Xalil', role: 'Bitiruvchi', emoji: '🎯', color: '#1dd1a1', grad: 'linear-gradient(135deg,#1dd1a1,#00b894)', salary: 'ALUMNI', start: "Boshlang'ich bilim", mid: "Amaliyot va mashqlar", end: "Katta maqsadlarga yetildi", quote: '"Shaxsiy mentoring bilan katta natijaga erishdim."', rating: 5 },
   { name: 'Kosimov Adxambek', role: 'Bitiruvchi', emoji: '💻', color: '#b66dff', grad: 'linear-gradient(135deg,#b66dff,#6c63ff)', salary: 'TOP NATIJA', start: "Faqatgina qiziqish bor edi", mid: "Ustozlar katta yordam berishdi", end: "Ishonchli va kuchli malaka", quote: '"Darslar shunchaki ajoyib. Rahmat kattakon!"', rating: 5 },
 ]
@@ -56,61 +138,28 @@ function usePinnedHScroll(sectionRef, trackRef) {
         start: 'top top',
         end: () => `+=${getScroll()}`,
         pin: true,
-        scrub: 1.2, // Ultra smooth scrubbing
+        scrub: 1.2,
         anticipatePin: 1,
         invalidateOnRefresh: true,
-        onUpdate: (self) => {
-          // GSAP Velocity-based momentum skew effect for MAX quality
-          const velocity = Math.min(Math.max(self.getVelocity() / 150, -12), 12)
-          gsap.to(cards, {
-            skewX: -velocity * 0.6,
-            rotation: velocity * 0.1,
-            overwrite: 'auto',
-            duration: 0.6,
-            ease: 'power3.out'
-          })
-        }
       },
     })
 
-    // Staggered appear side by side with Premium GSAP 3D config
-    cards.forEach((card, i) => {
+    // Cards appear one by one - NO skew, NO rotation, clean & smooth
+    cards.forEach((card) => {
       gsap.fromTo(card,
+        { opacity: 0, scale: 0.88, y: 30 },
         {
-          opacity: 0,
-          scale: 0.75,
-          y: 60,
-          x: 40,
-          rotationY: 25,
-          rotationZ: -3,
-          transformPerspective: 1200
-        },
-        {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          x: 0,
-          rotationY: 0,
-          rotationZ: 0,
-          duration: 1.3,
-          ease: 'power4.out',
+          opacity: 1, scale: 1, y: 0,
+          duration: 0.9,
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: card,
             containerAnimation: tween,
-            start: 'left 98%',
+            start: 'left 96%',
             toggleActions: 'play none none reverse',
           },
         }
       )
-    })
-
-    // Reset snap for velocity check
-    ScrollTrigger.create({
-      trigger: section,
-      start: 'top top',
-      end: () => `+=${getScroll()}`,
-      onLeave: () => gsap.to(cards, { skewX: 0, rotation: 0, duration: 0.5 }),
-      onLeaveBack: () => gsap.to(cards, { skewX: 0, rotation: 0, duration: 0.5 })
     })
 
     return () => {
@@ -126,10 +175,12 @@ function usePinnedHScroll(sectionRef, trackRef) {
 export default function HorizontalScrollSection() {
   const [selectedTeacher, setSelectedTeacher] = useState(null)
   const [modalVisible, setModalVisible] = useState(false)
+  const [activeTab, setActiveTab] = useState('about')
 
   const cSecRef = useRef(null); const cTrkRef = useRef(null)
   const tSecRef = useRef(null); const tTrkRef = useRef(null)
   const stSecRef = useRef(null); const stTrkRef = useRef(null)
+  const modalRef = useRef(null)
   const modalContentRef = useRef(null)
 
   usePinnedHScroll(cSecRef, cTrkRef)
@@ -138,12 +189,18 @@ export default function HorizontalScrollSection() {
 
   /* modal GSAP entry animation */
   useEffect(() => {
-    if (modalVisible && modalContentRef.current) {
-      const els = modalContentRef.current.children
-      gsap.fromTo(els,
-        { y: 30, opacity: 0, scale: 0.95 },
-        { y: 0, opacity: 1, scale: 1, duration: 0.6, stagger: 0.05, ease: 'back.out(1.4)' }
+    if (modalVisible && modalRef.current) {
+      gsap.fromTo(modalRef.current,
+        { scale: 0.88, y: 50, opacity: 0 },
+        { scale: 1, y: 0, opacity: 1, duration: 0.5, ease: 'back.out(1.6)' }
       )
+      if (modalContentRef.current) {
+        const els = [...modalContentRef.current.children]
+        gsap.fromTo(els,
+          { y: 24, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.55, stagger: 0.06, ease: 'power3.out', delay: 0.15 }
+        )
+      }
     }
   }, [modalVisible])
 
@@ -160,18 +217,45 @@ export default function HorizontalScrollSection() {
     })
   }, [])
 
-  const tilt = (e, el) => { const r = el.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width - .5; const y = (e.clientY - r.top) / r.height - .5; gsap.to(el, { rotationY: x * 14, rotationX: -y * 10, scale: 1.05, duration: .3, ease: 'power2.out', transformPerspective: 1200 }) }
-  const untilt = el => gsap.to(el, { rotationY: 0, rotationX: 0, scale: 1, duration: .5, ease: 'power2.out' })
+  /* Hover glow on card - no tilt, just smooth scale */
+  const hoverIn = el => gsap.to(el, { scale: 1.03, duration: 0.3, ease: 'power2.out' })
+  const hoverOut = el => gsap.to(el, { scale: 1, duration: 0.4, ease: 'power2.out' })
 
-  const open = t => { setSelectedTeacher(t); setModalVisible(true); document.body.style.overflow = 'hidden' }
-  const close = () => { setModalVisible(false); setTimeout(() => { setSelectedTeacher(null); document.body.style.overflow = '' }, 350) }
+  const open = t => {
+    setSelectedTeacher(t)
+    setActiveTab('about')
+    setModalVisible(true)
+    document.body.style.overflow = 'hidden'
+  }
+  const close = () => {
+    if (modalRef.current) {
+      gsap.to(modalRef.current, {
+        scale: 0.9, y: 40, opacity: 0, duration: 0.3, ease: 'power2.in',
+        onComplete: () => {
+          setModalVisible(false)
+          setSelectedTeacher(null)
+          document.body.style.overflow = ''
+        }
+      })
+    } else {
+      setModalVisible(false)
+      setSelectedTeacher(null)
+      document.body.style.overflow = ''
+    }
+  }
 
   return (
     <>
       <style>{`
         @keyframes arrowBounce { 0%,100%{transform:translateX(0);opacity:1} 50%{transform:translateX(10px);opacity:.5} }
-        .h-card { transform-style: preserve-3d; }
+        @keyframes pulseDot { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.6);opacity:.4} }
+        @keyframes shimmer { 0%{background-position:-400px 0} 100%{background-position:400px 0} }
+        .h-card { transform-style: flat !important; }
         .h-card:hover .glow-bar { opacity: 1 !important; }
+        .modal-tab { transition: all 0.25s; }
+        .modal-tab:hover { background: rgba(255,255,255,0.08) !important; }
+        .achievement-item { transition: transform 0.2s; }
+        .achievement-item:hover { transform: translateX(4px); }
       `}</style>
 
       {/* ════════════════ COURSES ════════════════ */}
@@ -188,7 +272,7 @@ export default function HorizontalScrollSection() {
           <div ref={cTrkRef} style={S.track}>
             {COURSES.map(c => (
               <div key={c.id} className="h-card glass" style={S.cCard}
-                onMouseMove={e => tilt(e, e.currentTarget)} onMouseLeave={e => untilt(e.currentTarget)}>
+                onMouseEnter={e => hoverIn(e.currentTarget)} onMouseLeave={e => hoverOut(e.currentTarget)}>
                 <div className="glow-bar" style={{ ...S.topBar, background: c.grad, opacity: .85 }} />
                 <div style={{ ...S.iconWrap, background: `${c.color}18`, border: `1.5px solid ${c.color}44` }}>
                   <c.Icon style={{ color: c.color, fontSize: '2.4rem' }} />
@@ -222,14 +306,14 @@ export default function HorizontalScrollSection() {
           <h2 className="sec-heading" style={S.h2}>
             Mutaxassislarga <span className="g">Ishonch Qiling</span>
           </h2>
-          <p style={S.sub}>50+ malakali o'qituvchi · Xalqaro sertifikatlar · 10–15+ yil real tajriba</p>
+          <p style={S.sub}>9 malakali o'qituvchi · Xalqaro sertifikatlar · Real tajriba</p>
         </div>
         <div style={S.viewport}>
           <div ref={tTrkRef} style={S.track}>
             {TEACHERS.map((t, i) => (
               <div key={i} className="h-card glass" style={S.tCard}
                 onClick={() => open(t)}
-                onMouseMove={e => tilt(e, e.currentTarget)} onMouseLeave={e => untilt(e.currentTarget)}>
+                onMouseEnter={e => hoverIn(e.currentTarget)} onMouseLeave={e => hoverOut(e.currentTarget)}>
                 <div className="glow-bar" style={{ ...S.topBar, background: t.grad, opacity: .85 }} />
                 <div style={{ position: 'relative', marginBottom: 20 }}>
                   <div style={{ ...S.avRing, borderColor: `${t.color}55` }} />
@@ -243,18 +327,18 @@ export default function HorizontalScrollSection() {
                   <span style={{ fontFamily: 'Orbitron,monospace', fontSize: 14, fontWeight: 900, color: t.color, marginLeft: 4 }}>{t.rating}</span>
                 </div>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5, justifyContent: 'center', marginBottom: 14 }}>
-                  {t.skills.map(sk => <span key={sk} style={{ fontSize: 11, padding: '4px 10px', borderRadius: 6, border: `1px solid ${t.color}33`, background: 'rgba(255,255,255,.04)', fontFamily: 'Rajdhani', fontWeight: 700, color: t.color }}>{sk}</span>)}
+                  {t.skills.slice(0, 3).map(sk => <span key={sk} style={{ fontSize: 11, padding: '4px 10px', borderRadius: 6, border: `1px solid ${t.color}33`, background: 'rgba(255,255,255,.04)', fontFamily: 'Rajdhani', fontWeight: 700, color: t.color }}>{sk}</span>)}
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-around', paddingTop: 12, borderTop: '1px solid rgba(255,255,255,.07)' }}>
-                  {[['students', "O'quvchi"], ['exp', 'Yil'], ['company', 'Tajriba']].map(([k, l]) => (
+                  {[['students', "O'quvchi"], ['exp', 'Yil'], ['company', 'Manzil']].map(([k, l]) => (
                     <div key={k} style={{ textAlign: 'center' }}>
                       <div style={{ fontFamily: 'Orbitron,monospace', fontSize: 14, fontWeight: 900, color: t.color }}>{t[k]}</div>
                       <div style={{ fontSize: 9, color: '#6da9c8', letterSpacing: '1px', textTransform: 'uppercase', marginTop: 3 }}>{l}</div>
                     </div>
                   ))}
                 </div>
-                <div style={{ display: 'inline-block', marginTop: 12, padding: '5px 16px', borderRadius: 20, fontSize: 11, fontFamily: 'Rajdhani', fontWeight: 700, background: 'rgba(255,255,255,.04)', border: `1px solid ${t.color}33`, color: t.color }}>
-                  Batafsil ko'rish →
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 14, padding: '8px 16px', borderRadius: 20, fontSize: 12, fontFamily: 'Rajdhani', fontWeight: 700, background: `${t.color}15`, border: `1px solid ${t.color}33`, color: t.color, gap: 6 }}>
+                  <span>Batafsil ko'rish</span><span>→</span>
                 </div>
               </div>
             ))}
@@ -277,7 +361,7 @@ export default function HorizontalScrollSection() {
           <div ref={stTrkRef} style={S.track}>
             {TESTIMONIALS.map((t, i) => (
               <div key={i} className="h-card glass" style={S.stCard}
-                onMouseMove={e => tilt(e, e.currentTarget)} onMouseLeave={e => untilt(e.currentTarget)}>
+                onMouseEnter={e => hoverIn(e.currentTarget)} onMouseLeave={e => hoverOut(e.currentTarget)}>
                 <div className="glow-bar" style={{ ...S.topBar, background: t.grad, opacity: .85 }} />
                 <div style={{ ...S.salBadge, background: t.grad }}>{t.salary}</div>
                 <div style={{ width: 64, height: 64, borderRadius: '50%', background: t.grad, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem', marginBottom: 14, boxShadow: '0 6px 24px rgba(0,0,0,.5)' }}>{t.emoji}</div>
@@ -287,7 +371,7 @@ export default function HorizontalScrollSection() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                   {[['🏁 Boshlanish', t.start, false], ['⚡ Jarayon', t.mid, false], ['✅ Hozir', t.end, true]].map(([lbl, txt, ok]) => (
                     <div key={lbl} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
-                      <div style={{ width: 13, height: 13, borderRadius: '50%', flexShrink: 0, marginTop: 3, background: ok ? '#00C9B1' : '#334', boxShadow: ok ? '0 0 12px #00C9B1' : 'none', border: `2px solid ${ok ? '#00C9B1' : '#445'}` }} />
+                      <div style={{ width: 13, height: 13, borderRadius: '50%', flexShrink: 0, marginTop: 3, background: ok ? '#00C9B1' : '#334', boxShadow: ok ? '0 0 12px #00C9B1' : 'none', border: `2px solid ${ok ? '#00C9B1' : '#445'}`, animation: ok ? 'pulseDot 2s infinite' : 'none' }} />
                       <div>
                         <div style={{ fontSize: 10, fontFamily: 'Orbitron', fontWeight: 700, letterSpacing: '1px', marginBottom: 2, textTransform: 'uppercase', color: ok ? '#00C9B1' : '#aaa' }}>{lbl}</div>
                         <div style={{ fontSize: 'clamp(11px,.9vw,13px)', lineHeight: 1.55, color: ok ? '#e0f4ff' : '#6da9c8' }}>{txt}</div>
@@ -307,30 +391,106 @@ export default function HorizontalScrollSection() {
 
       {/* ════════════════ MODAL ════════════════ */}
       {selectedTeacher && (
-        <div style={{ ...S.overlay, opacity: modalVisible ? 1 : 0, pointerEvents: modalVisible ? 'all' : 'none' }} onClick={close}>
-          <div style={{ ...S.modal, transform: modalVisible ? 'scale(1) translateY(0)' : 'scale(0.92) translateY(40px)' }} onClick={e => e.stopPropagation()}>
-            <button style={S.mClose} onClick={close}>✕</button>
-            <div style={{ ...S.modalGlow, background: selectedTeacher.grad }} />
+        <div
+          style={{ ...S.overlay, opacity: modalVisible ? 1 : 0, pointerEvents: modalVisible ? 'all' : 'none' }}
+          onClick={close}
+        >
+          <div ref={modalRef} style={S.modal} onClick={e => e.stopPropagation()}>
+            {/* Close */}
+            <button style={S.mClose} onClick={close}><FaTimes /></button>
+
+            {/* Top gradient bar */}
+            <div style={{ ...S.modalTopBar, background: selectedTeacher.grad }} />
+
+            {/* Content */}
             <div ref={modalContentRef} style={{ position: 'relative', zIndex: 2 }}>
-              <div style={{ width: 120, height: 120, borderRadius: '50%', background: selectedTeacher.grad, margin: '0 auto 24px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '3.6rem', boxShadow: `0 0 40px ${selectedTeacher.color}55` }}>{selectedTeacher.emoji}</div>
-              <h2 style={{ fontFamily: 'Orbitron,monospace', fontSize: '1.8rem', textAlign: 'center', color: '#fff', marginBottom: 8 }}>{selectedTeacher.name}</h2>
-              <div style={{ textAlign: 'center', fontFamily: 'Rajdhani', fontSize: '1.1rem', fontWeight: 800, letterSpacing: '2px', textTransform: 'uppercase', marginBottom: 20, color: selectedTeacher.color }}>{selectedTeacher.role}</div>
 
-              <p style={{ color: '#6da9c8', lineHeight: 1.85, marginBottom: 32, fontSize: '1.05rem', textAlign: 'center', padding: '0 20px' }}>{selectedTeacher.bio}</p>
+              {/* Hero section */}
+              <div style={{ textAlign: 'center', marginBottom: 28 }}>
+                <div style={{ position: 'relative', display: 'inline-block', marginBottom: 20 }}>
+                  <div style={{ width: 110, height: 110, borderRadius: '50%', background: selectedTeacher.grad, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '3.4rem', boxShadow: `0 0 40px ${selectedTeacher.color}55, 0 0 80px ${selectedTeacher.color}22` }}>{selectedTeacher.emoji}</div>
+                  <div style={{ position: 'absolute', bottom: 2, right: 2, width: 24, height: 24, borderRadius: '50%', background: '#00C9B1', border: '2px solid #020b18', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</div>
+                </div>
+                <h2 style={{ fontFamily: 'Orbitron,monospace', fontSize: 'clamp(1.3rem,2.5vw,1.9rem)', color: '#fff', marginBottom: 6 }}>{selectedTeacher.name}</h2>
+                <div style={{ fontFamily: 'Rajdhani', fontSize: '1rem', fontWeight: 800, letterSpacing: '2px', textTransform: 'uppercase', color: selectedTeacher.color, marginBottom: 14 }}>{selectedTeacher.role} · {selectedTeacher.badge}</div>
+                <div style={{ display: 'flex', justifyContent: 'center', gap: 4, alignItems: 'center', marginBottom: 8 }}>
+                  {[...Array(5)].map((_, i) => <FaStar key={i} style={{ color: '#ffd700', fontSize: '1.1rem' }} />)}
+                  <span style={{ fontFamily: 'Orbitron,monospace', fontSize: '1.1rem', fontWeight: 900, color: '#ffd700', marginLeft: 8 }}>{selectedTeacher.rating}/5</span>
+                </div>
+              </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 30 }}>
-                {[["O'quvchilar", selectedTeacher.students], ['Tajriba (yil)', selectedTeacher.exp], ['Kompaniya', selectedTeacher.company], ['Reyting', selectedTeacher.rating + '/5']].map(([l, v]) => (
-                  <div key={l} style={{ background: 'rgba(255,255,255,0.03)', border: `1px solid ${selectedTeacher.color}33`, borderRadius: 18, padding: 20, textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, transition: 'all 0.3s', cursor: 'default' }}>
-                    <span style={{ fontFamily: 'Orbitron,monospace', fontSize: '2rem', fontWeight: 900, color: selectedTeacher.color }}>{v}</span>
-                    <span style={{ fontSize: '.9rem', color: '#6da9c8', fontWeight: 500 }}>{l}</span>
+              {/* Stats row */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12, marginBottom: 28 }}>
+                {[
+                  { icon: <FaUsers />, val: selectedTeacher.students, lbl: "O'quvchilar" },
+                  { icon: <FaAward />, val: selectedTeacher.exp + ' yil', lbl: 'Tajriba' },
+                  { icon: <FaGraduationCap />, val: selectedTeacher.company, lbl: 'Muassasa' }
+                ].map(({ icon, val, lbl }) => (
+                  <div key={lbl} style={{ background: `${selectedTeacher.color}10`, border: `1px solid ${selectedTeacher.color}30`, borderRadius: 16, padding: '16px 10px', textAlign: 'center' }}>
+                    <div style={{ color: selectedTeacher.color, fontSize: '1.3rem', marginBottom: 6 }}>{icon}</div>
+                    <div style={{ fontFamily: 'Orbitron,monospace', fontSize: 'clamp(1rem,1.5vw,1.4rem)', fontWeight: 900, color: selectedTeacher.color }}>{val}</div>
+                    <div style={{ fontSize: 11, color: '#6da9c8', marginTop: 4, fontFamily: 'Rajdhani', letterSpacing: '1px' }}>{lbl}</div>
                   </div>
                 ))}
               </div>
 
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, justifyContent: 'center' }}>
-                {selectedTeacher.skills.map(sk => (
-                  <span key={sk} style={{ fontSize: 13, padding: '10px 22px', borderRadius: 8, border: `1px solid ${selectedTeacher.color}55`, background: 'rgba(255,255,255,.05)', fontFamily: 'Rajdhani', fontWeight: 700, color: selectedTeacher.color, letterSpacing: '1px' }}>{sk}</span>
+              {/* Tabs */}
+              <div style={{ display: 'flex', gap: 6, marginBottom: 22, padding: '6px', background: 'rgba(255,255,255,.04)', borderRadius: 14 }}>
+                {[['about', '👤 Haqida'], ['skills', '⚡ Ko\'nikmalar'], ['achievements', '🏆 Yutuqlar']].map(([key, label]) => (
+                  <button
+                    key={key}
+                    className="modal-tab"
+                    onClick={() => setActiveTab(key)}
+                    style={{
+                      flex: 1, padding: '10px 8px', borderRadius: 10, border: 'none', cursor: 'pointer',
+                      fontFamily: 'Rajdhani', fontWeight: 700, fontSize: 'clamp(11px,1.2vw,13px)',
+                      background: activeTab === key ? `${selectedTeacher.color}22` : 'transparent',
+                      color: activeTab === key ? selectedTeacher.color : '#6da9c8',
+                      borderBottom: activeTab === key ? `2px solid ${selectedTeacher.color}` : '2px solid transparent',
+                    }}
+                  >{label}</button>
                 ))}
+              </div>
+
+              {/* Tab content */}
+              {activeTab === 'about' && (
+                <p style={{ color: '#a8c8e0', lineHeight: 1.9, fontSize: 'clamp(0.9rem,1.3vw,1rem)', fontFamily: 'Rajdhani', fontWeight: 500 }}>
+                  {selectedTeacher.fullBio}
+                </p>
+              )}
+
+              {activeTab === 'skills' && (
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+                  {selectedTeacher.skills.map((sk, i) => (
+                    <div key={sk} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px 18px', borderRadius: 10, border: `1px solid ${selectedTeacher.color}44`, background: `${selectedTeacher.color}0d`, fontFamily: 'Rajdhani', fontWeight: 700, fontSize: 14, color: selectedTeacher.color }}>
+                      <span style={{ width: 8, height: 8, borderRadius: '50%', background: selectedTeacher.color, display: 'inline-block', boxShadow: `0 0 8px ${selectedTeacher.color}` }} />
+                      {sk}
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {activeTab === 'achievements' && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                  {selectedTeacher.achievements.map((ach, i) => (
+                    <div key={i} className="achievement-item" style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '14px 18px', borderRadius: 12, background: 'rgba(255,255,255,0.03)', border: `1px solid ${selectedTeacher.color}22` }}>
+                      <div style={{ width: 34, height: 34, borderRadius: '50%', background: `${selectedTeacher.color}20`, border: `1.5px solid ${selectedTeacher.color}55`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: selectedTeacher.color, fontSize: 14, flexShrink: 0, fontFamily: 'Orbitron,monospace', fontWeight: 900 }}>
+                        {String(i + 1).padStart(2, '0')}
+                      </div>
+                      <span style={{ fontFamily: 'Rajdhani', fontWeight: 600, fontSize: 14, color: '#c8dff0', lineHeight: 1.5 }}>{ach}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Contact */}
+              <div style={{ marginTop: 26, paddingTop: 20, borderTop: `1px solid ${selectedTeacher.color}22`, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                <a href={`https://t.me/${selectedTeacher.contact?.telegram?.replace('@', '')}`} style={{ ...S.contactBtn, background: `${selectedTeacher.color}15`, borderColor: `${selectedTeacher.color}44`, color: selectedTeacher.color }}>
+                  <FaTelegram style={{ marginRight: 8 }} />{selectedTeacher.contact?.telegram}
+                </a>
+                <a href={`mailto:${selectedTeacher.contact?.email}`} style={{ ...S.contactBtn, background: 'rgba(255,255,255,0.05)', borderColor: 'rgba(255,255,255,0.12)', color: '#6da9c8' }}>
+                  📧 {selectedTeacher.contact?.email}
+                </a>
               </div>
             </div>
           </div>
@@ -370,8 +530,9 @@ const S = {
   tBadge: { position: 'absolute', top: -6, right: 'calc(50% - 68px)', background: 'rgba(2,11,24,.95)', border: '1px solid', borderRadius: 20, padding: '3px 10px', fontSize: 10, fontWeight: 700, fontFamily: 'Orbitron,monospace', letterSpacing: '.5px', whiteSpace: 'nowrap' },
   stCard: { flexShrink: 0, width: 'clamp(290px,22vw,360px)', padding: '30px 26px', position: 'relative', cursor: 'default', background: 'rgba(4,16,44,.95)', border: '1.5px solid rgba(255,255,255,.1)', borderRadius: 22 },
   salBadge: { position: 'absolute', top: 20, right: 20, padding: '7px 18px', borderRadius: 30, fontFamily: 'Orbitron,monospace', fontSize: 14, fontWeight: 900, color: '#020b18', letterSpacing: '1px', boxShadow: '0 4px 20px rgba(0,0,0,.4)' },
-  overlay: { position: 'fixed', inset: 0, zIndex: 9000, background: 'rgba(0,0,0,.93)', backdropFilter: 'blur(24px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24, transition: 'opacity .35s' },
-  modal: { background: 'linear-gradient(135deg,rgba(4,18,46,.99),rgba(2,8,24,.99))', border: '1px solid rgba(0,201,177,.3)', borderRadius: 28, padding: '52px 48px', maxWidth: 700, width: '100%', position: 'relative', transition: 'transform .4s cubic-bezier(.2,1.4,.5,1)', boxShadow: '0 40px 100px rgba(0,0,0,.8)', maxHeight: '90vh', overflowY: 'auto' },
-  mClose: { position: 'absolute', top: 18, right: 20, background: 'rgba(255,255,255,.08)', border: '1px solid rgba(255,255,255,.15)', color: '#aaa', fontSize: '1.2rem', cursor: 'pointer', width: 36, height: 36, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 },
-  modalGlow: { position: 'absolute', top: 0, left: 0, right: 0, height: 6, borderRadius: '28px 28px 0 0', opacity: 0.9, zIndex: 1 },
+  overlay: { position: 'fixed', inset: 0, zIndex: 9000, background: 'rgba(0,0,0,.9)', backdropFilter: 'blur(28px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', transition: 'opacity .3s' },
+  modal: { background: 'linear-gradient(160deg,rgba(5,20,52,.98),rgba(2,8,24,.99))', border: '1px solid rgba(0,201,177,.25)', borderRadius: 28, padding: '48px 44px 44px', maxWidth: 680, width: '100%', position: 'relative', boxShadow: '0 40px 100px rgba(0,0,0,.85), 0 0 60px rgba(0,201,177,.08)', maxHeight: '90vh', overflowY: 'auto' },
+  mClose: { position: 'absolute', top: 16, right: 16, background: 'rgba(255,255,255,.07)', border: '1px solid rgba(255,255,255,.12)', color: '#888', fontSize: '1rem', cursor: 'pointer', width: 34, height: 34, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10, transition: 'all .2s' },
+  modalTopBar: { position: 'absolute', top: 0, left: 0, right: 0, height: 5, borderRadius: '28px 28px 0 0', opacity: 1, zIndex: 1 },
+  contactBtn: { display: 'flex', alignItems: 'center', padding: '10px 18px', borderRadius: 10, border: '1px solid', fontFamily: 'Rajdhani', fontWeight: 700, fontSize: 13, textDecoration: 'none', cursor: 'pointer', transition: 'all .2s' },
 }
