@@ -53,16 +53,18 @@ const COURSES = [
 ]
 
 const TEACHERS = [
+  // {
+  //   name: 'Refatbek Arolov', role: 'Direktor', badge: '👔 DIREKTOR',
+  //   img: 'img5.jpg',
+  //   rating: '5.0', color: '#00C9B1', grad: 'linear-gradient(135deg,#00C9B1,#00E5FF)',
+  //   skills: ['Management', 'Strategy', 'Prompt Engineering'], students: '1000+', exp: '10+', company: 'Joylinks',
+  //   fullBio: "Refatbek Arolov — Joylinks akademiyasining asoschisi. O'zbekistonda zamonaviy IT ta'lim tizimini rivojlantirishga ulkan hissa qo'shib kelmoqda.",
+  //   achievements: ["Joylinks IT Academy asoschisi", "Muvaffaqiyatli tadbirkor"],
+  //   contact: { telegram: '@refatbek_arolov', email: 'direktor@joylinks.uz' }
+  // },
   {
-    name: 'Refatbek Arolov', role: 'Direktor', badge: '👔 DIREKTOR', img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400',
-    rating: '5.0', color: '#00C9B1', grad: 'linear-gradient(135deg,#00C9B1,#00E5FF)',
-    skills: ['Management', 'Strategy', 'Prompt Engineering'], students: '1000+', exp: '10+', company: 'Joylinks',
-    fullBio: "Refatbek Arolov — Joylinks akademiyasining asoschisi. O'zbekistonda zamonaviy IT ta'lim tizimini rivojlantirishga ulkan hissa qo'shib kelmoqda.",
-    achievements: ["Joylinks IT Academy asoschisi", "Muvaffaqiyatli tadbirkor"],
-    contact: { telegram: '@refatbek_arolov', email: 'direktor@joylinks.uz' }
-  },
-  {
-    name: 'Abbos Xushboqov', role: "O'qituvchi", badge: '🛡️ SECURITY', img: 'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&q=80&w=400',
+    name: 'Abbos Xushboqov', role: "O'qituvchi", badge: '🛡️ SECURITY',
+    img: 'img3.png',
     rating: '5.0', color: '#ff6b6b', grad: 'linear-gradient(135deg,#ee5253,#ff6b6b)',
     skills: ['Cyber Security', 'Pentesting', 'Linux'], students: '150+', exp: '5+', company: 'Joylinks',
     fullBio: "Abbos Xushboqov — kiberxavfsizlik bo'yicha yetuk mutaxassis. Xalqaro CTF musobaqalari qatnashchisi.",
@@ -70,7 +72,8 @@ const TEACHERS = [
     contact: { telegram: '@abbos_sec', email: 'abbos@joylinks.uz' }
   },
   {
-    name: 'Umid Mamatraximov', role: "O'qituvchi", badge: 'FRONT-END', img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400',
+    name: 'Umid Mamatraximov', role: "O'qituvchi", badge: 'FRONT-END',
+    img: 'img2.png',
     rating: '4.9', color: '#FF6B6B', grad: 'linear-gradient(135deg,#E74C3C,#C0392B)',
     skills: ['React', 'Next.js', 'Tailwind'], students: '300+', exp: '4+', company: 'Joylinks',
     fullBio: "Umid Mamatraximov — zamonaviy JS frameworklari ustasi. Ko'plab yirik loyihalar arxitektori.",
@@ -78,7 +81,8 @@ const TEACHERS = [
     contact: { telegram: '@umid_js', email: 'umid@joylinks.uz' }
   },
   {
-    name: 'Jahongir Omonov', role: "O'qituvchi", badge: 'BACK-END', img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=400',
+    name: 'Jahongir Omonov', role: "O'qituvchi", badge: 'BACK-END',
+    img: 'img5.png',
     rating: '4.9', color: '#1dd1a1', grad: 'linear-gradient(135deg,#1dd1a1,#00b894)',
     skills: ['Python', 'Django', 'PostgreSQL'], students: '300+', exp: '4+', company: 'Joylinks',
     fullBio: "Jahongir Omonov — backend va DevOps mutaxassisi. Tizimlarni xavfsiz va tez ishlashini ta'minlaydi.",
@@ -86,7 +90,8 @@ const TEACHERS = [
     contact: { telegram: '@jahongir_py', email: 'jahongir@joylinks.uz' }
   },
   {
-    name: 'Samandar Qurbonov', role: "O'qituvchi", badge: 'FRONT-END', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400',
+    name: 'Samandar Qurbonov', role: "O'qituvchi", badge: 'FRONT-END',
+    img: 'img3.jpg',
     rating: '4.8', color: '#a29bfe', grad: 'linear-gradient(135deg,#5F27CD,#8E44AD)',
     skills: ['UI/UX', 'Figma', 'HTML/CSS'], students: '400+', exp: '4+', company: 'Joylinks',
     fullBio: "Samandar Qurbonov — web-dizayn va UX research ustasi. Interfeyslarni foydalanuvchibop qilish bo'yicha ekspert.",
@@ -94,7 +99,8 @@ const TEACHERS = [
     contact: { telegram: '@samandar_ux', email: 'samandar@joylinks.uz' }
   },
   {
-    name: 'Dilnoza Shamshiddinova', role: "O'qituvchi", badge: '🇬🇧 ENGLISH', img: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=400',
+    name: 'Dilnoza Shamshiddinova', role: "O'qituvchi", badge: '🇬🇧 ENGLISH',
+    img: 'img4.jpg',
     rating: '4.9', color: '#feca57', grad: 'linear-gradient(135deg,#ff9f43,#feca57)',
     skills: ['IELTS', 'Business English'], students: '500+', exp: '5+', company: 'Joylinks',
     fullBio: "Dilnoza Shamshiddinova — IELTS 8.5 ball sohibasi. O'quvchilarni eng qisqa muddatda natijaga olib chiqadi.",
@@ -280,7 +286,7 @@ export default function HorizontalScrollSection() {
       <section id="teachers" ref={tSecRef} style={S.pSec}>
         <div style={S.headCenter}>
           <div style={S.tag}>🌟 MUTAXASSISLAR</div>
-          <h2 className="sec-heading" style={S.h2}>Bizning <span className="g">Kuchsiz Tomonimiz Yo'q</span></h2>
+          <h2 className="sec-heading" style={S.h2}>Bizning <span className="g">O'qituvchilarimiz</span></h2>
           <p style={S.sub}>Google va xalqaro kompaniyalar tajribasiga ega ustozlar jamoasi</p>
         </div>
 
