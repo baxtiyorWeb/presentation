@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { FaTrophy, FaLaptopCode, FaBriefcase, FaBullseye } from 'react-icons/fa'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -12,10 +13,10 @@ const STATS = [
 ]
 
 const ABOUT_CARDS = [
-  { icon: '🏆', title: 'Xalqaro Standart', desc: 'Janubiy Koreya & Germaniya bilan rasmiy hamkorlik. Sertifikatlar dunyoda tan olingan.' },
-  { icon: '👨‍💻', title: 'Real Tajriba', desc: 'Google, Microsoft, startuplardan kelgan 10-15+ yil tajribali o\'qituvchilar.' },
-  { icon: '💼', title: "Ish Joyiga Ta'minlash", desc: "100+ hamkor kompaniya bilan 85% o'quvchi 3 oyda ish topadi." },
-  { icon: '🎯', title: 'Individual Mentoring', desc: "Har bir o'quvchi uchun shaxsiy mentor va haftalik progress tracking." },
+  { Icon: FaTrophy, title: 'Xalqaro Standart', desc: 'Janubiy Koreya & Germaniya bilan rasmiy hamkorlik. Sertifikatlar dunyoda tan olingan.' },
+  { Icon: FaLaptopCode, title: 'Real Tajriba', desc: 'Google, Microsoft, startuplardan kelgan 10-15+ yil tajribali o\'qituvchilar.' },
+  { Icon: FaBriefcase, title: "Ish Joyiga Ta'minlash", desc: "100+ hamkor kompaniya bilan 85% o'quvchi 3 oyda ish topadi." },
+  { Icon: FaBullseye, title: 'Individual Mentoring', desc: "Har bir o'quvchi uchun shaxsiy mentor va haftalik progress tracking." },
 ]
 
 export default function HeroSection() {
@@ -279,7 +280,13 @@ export default function HeroSection() {
                 onMouseMove={e => handleTilt(e, e.currentTarget)}
                 onMouseLeave={e => resetTilt(e.currentTarget)}>
                 <div style={styles.acardTop}>
-                  <span style={styles.acardIcon}>{c.icon}</span>
+                  <div style={{
+                    width: 60, height: 60, borderRadius: 16,
+                    background: 'rgba(0,201,177,0.1)', border: '1px solid rgba(0,201,177,0.2)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0
+                  }}>
+                    <c.Icon style={{ color: '#00C9B1', fontSize: '1.8rem' }} />
+                  </div>
                   <div>
                     <h3 style={styles.acardH3}>{c.title}</h3>
                     <p style={styles.acardP}>{c.desc}</p>
@@ -308,11 +315,13 @@ const styles = {
   hero: {
     minHeight: '100vh',
     display: 'flex',
+    flexWrap: 'wrap',
     alignItems: 'center',
-    padding: '140px 56px 80px',
+    padding: 'clamp(100px, 15vh, 160px) clamp(20px, 5vw, 64px) 80px',
     background: 'radial-gradient(ellipse 80% 60% at 60% 40%, rgba(0,201,177,.08) 0%, transparent 70%)',
-    gap: 48,
+    gap: 'clamp(40px, 8vw, 80px)',
     overflow: 'hidden',
+    justifyContent: 'center'
   },
   heroContent: { flex: 1, maxWidth: 650, zIndex: 2 },
   badge: {
@@ -335,29 +344,29 @@ const styles = {
   heroSub: {
     color: '#6da9c8', fontSize: '17px', lineHeight: 1.8, marginBottom: 44, maxWidth: 520, fontFamily: 'Rajdhani, sans-serif', fontWeight: 500,
   },
-  heroBtns: { display: 'flex', gap: 16, flexWrap: 'wrap', marginBottom: 64 },
+  heroBtns: { display: 'flex', gap: 16, flexWrap: 'wrap', marginBottom: 'clamp(40px, 6vw, 64px)' },
   btnP: {
-    padding: '14px 36px', background: 'linear-gradient(135deg,#00C9B1,#008F7A)',
+    padding: '14px clamp(24px, 4vw, 36px)', background: 'linear-gradient(135deg,#00C9B1,#008F7A)',
     border: 'none', borderRadius: 10, color: '#020b18',
-    fontFamily: 'Orbitron, monospace', fontSize: '13px', fontWeight: 700, letterSpacing: '1.5px',
+    fontFamily: 'Orbitron, monospace', fontSize: 'clamp(11px, 1.2vw, 13px)', fontWeight: 700, letterSpacing: '1.5px',
     cursor: 'pointer', textDecoration: 'none', display: 'inline-block',
     boxShadow: '0 6px 28px rgba(0,201,177,.4)', transition: 'all .3s',
   },
   btnS: {
-    padding: '14px 36px', background: 'transparent',
+    padding: '14px clamp(24px, 4vw, 36px)', background: 'transparent',
     border: '1.5px solid rgba(0,201,177,.5)', borderRadius: 10, color: '#00C9B1',
-    fontFamily: 'Orbitron, monospace', fontSize: '13px', fontWeight: 700, letterSpacing: '1.5px',
+    fontFamily: 'Orbitron, monospace', fontSize: 'clamp(11px, 1.2vw, 13px)', fontWeight: 700, letterSpacing: '1.5px',
     cursor: 'pointer', textDecoration: 'none', display: 'inline-block', transition: 'all .3s',
   },
-  heroStats: { display: 'flex', gap: 52, flexWrap: 'wrap' },
+  heroStats: { display: 'flex', gap: 'clamp(30px, 5vw, 52px)', flexWrap: 'wrap' },
   statNum: {
-    fontFamily: 'Orbitron, monospace', fontSize: '44px', fontWeight: 900, lineHeight: 1,
+    fontFamily: 'Orbitron, monospace', fontSize: 'clamp(32px, 5vw, 44px)', fontWeight: 900, lineHeight: 1,
     background: 'linear-gradient(90deg,#00C9B1,#00E5FF)',
     WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
   },
-  statLabel: { fontSize: '12px', color: '#6da9c8', letterSpacing: '1.5px', marginTop: 6, textTransform: 'uppercase', fontFamily: 'Rajdhani, sans-serif', fontWeight: 600 },
-  heroVisual: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' },
-  hexScene: { width: 420, height: 420, position: 'relative' },
+  statLabel: { fontSize: 'clamp(10px, 1.2vw, 12px)', color: '#6da9c8', letterSpacing: '1.5px', marginTop: 6, textTransform: 'uppercase', fontFamily: 'Rajdhani, sans-serif', fontWeight: 600 },
+  heroVisual: { flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', minWidth: 'min(100%, 400px)' },
+  hexScene: { width: 'clamp(300px, 40vw, 420px)', height: 'clamp(300px, 40vw, 420px)', position: 'relative' },
   orbit1: {
     position: 'absolute', top: '50%', left: '50%',
     width: 380, height: 380, marginTop: -190, marginLeft: -190,
@@ -386,11 +395,11 @@ const styles = {
     filter: 'drop-shadow(0 0 32px rgba(0,201,177,.4))',
   },
   about: {
-    padding: '140px 56px',
+    padding: 'clamp(80px, 12vw, 140px) clamp(20px, 5vw, 56px)',
     background: 'linear-gradient(180deg,transparent,rgba(5,20,40,.4),transparent)',
     position: 'relative', zIndex: 10,
   },
-  aboutGrid: { maxWidth: 1280, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 90, alignItems: 'center' },
+  aboutGrid: { maxWidth: 1280, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 500px), 1fr))', gap: 'clamp(40px, 8vw, 90px)', alignItems: 'center' },
   aboutLeft: {},
   secTag: {
     display: 'inline-block', fontFamily: 'Orbitron, monospace', fontSize: '11px',

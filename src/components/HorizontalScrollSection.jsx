@@ -4,7 +4,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import {
   FaCode, FaServer, FaShieldAlt, FaPaintBrush, FaGlobeAmericas, FaBrain,
   FaDesktop, FaComments, FaStar, FaQuoteLeft, FaTimes, FaGraduationCap,
-  FaTelegram, FaAward, FaUsers, FaExternalLinkAlt, FaCheckCircle
+  FaTelegram, FaAward, FaUsers, FaExternalLinkAlt, FaCheckCircle,
+  FaUserGraduate, FaRocket, FaBullseye, FaLaptop
 } from 'react-icons/fa'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -110,10 +111,10 @@ const TEACHERS = [
 ]
 
 const TESTIMONIALS = [
-  { name: 'Ozodbek Ruziboyev', role: 'Frontend Dasturchi', emoji: '👨‍🎓', color: '#00C9B1', grad: 'linear-gradient(135deg,#00C9B1,#00E5FF)', quote: '"Joylinks men uchun kelajak eshiklarini ochdi!"', rating: 5, site: 'https://portfolio-ozodbek.joylinks.uz' },
-  { name: 'Mamatov Musulmon', role: 'Backend Dasturchi', emoji: '🚀', color: '#FFD166', grad: 'linear-gradient(135deg,#FFD166,#FF9F43)', quote: '"Eng zo\'r ustozlar va muhit shu yerda!"', rating: 5, site: 'https://musulmon-api.joylinks.uz' },
-  { name: 'Quldoshev Xalil', role: 'Fullstack Dasturchi', emoji: '🎯', color: '#1dd1a1', grad: 'linear-gradient(135deg,#1dd1a1,#00b894)', quote: '"Shaxsiy mentoring bilan katta natijaga erishdim."', rating: 5, site: 'https://xalil-app.joylinks.uz' },
-  { name: 'Kosimov Adxambek', role: 'Grafik Dizayner', emoji: '💻', color: '#b66dff', grad: 'linear-gradient(135deg,#b66dff,#6c63ff)', quote: '"Darslar shunchaki ajoyib. Rahmat kattakon!"', rating: 5, site: 'https://adxambek-design.joylinks.uz' },
+  { name: 'Ozodbek Ruziboyev', role: 'Frontend Dasturchi', Icon: FaUserGraduate, color: '#00C9B1', grad: 'linear-gradient(135deg,#00C9B1,#00E5FF)', quote: '"Joylinks men uchun kelajak eshiklarini ochdi!"', rating: 5, site: 'https://portfolio-ozodbek.joylinks.uz' },
+  { name: 'Mamatov Musulmon', role: 'Backend Dasturchi', Icon: FaRocket, color: '#FFD166', grad: 'linear-gradient(135deg,#FFD166,#FF9F43)', quote: '"Eng zo\'r ustozlar va muhit shu yerda!"', rating: 5, site: 'https://musulmon-api.joylinks.uz' },
+  { name: 'Quldoshev Xalil', role: 'Fullstack Dasturchi', Icon: FaBullseye, color: '#1dd1a1', grad: 'linear-gradient(135deg,#1dd1a1,#00b894)', quote: '"Shaxsiy mentoring bilan katta natijaga erishdim."', rating: 5, site: 'https://xalil-app.joylinks.uz' },
+  { name: 'Kosimov Adxambek', role: 'Grafik Dizayner', Icon: FaLaptop, color: '#b66dff', grad: 'linear-gradient(135deg,#b66dff,#6c63ff)', quote: '"Darslar shunchaki ajoyib. Rahmat kattakon!"', rating: 5, site: 'https://adxambek-design.joylinks.uz' },
 ]
 
 export default function HorizontalScrollSection() {
@@ -263,8 +264,10 @@ export default function HorizontalScrollSection() {
                 <p style={S.cSub}>{c.sub}</p>
                 <p style={S.cDesc}>{c.desc}</p>
                 <div style={S.cDetails}>{c.details}</div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginTop: 24 }}>
-                  <div style={{ color: c.color, fontWeight: 700, fontSize: 14, letterSpacing: 1, fontFamily: 'Orbitron', display: 'flex', alignItems: 'center', gap: 8 }}>BATAFSIL <FaExternalLinkAlt size={12} /></div>
+                <div style={{ marginTop: 24 }}>
+                  <button style={{ ...S.cBtn, background: `${c.color}15`, color: c.color, borderColor: `${c.color}33` }}>
+                    BATAFSIL MA'LUMOT <FaExternalLinkAlt size={12} />
+                  </button>
                 </div>
               </div>
               <div style={S.cRight} onClick={e => e.stopPropagation()}>
@@ -295,7 +298,13 @@ export default function HorizontalScrollSection() {
             {TEACHERS.map((t, i) => (
               <div key={i} className="t-card glass" style={S.tCard} onClick={() => open(t)}>
                 <div style={S.tImgFrame}>
-                  <img src={t.img} alt={t.name} className="t-img" style={S.tImg} />
+                  <img 
+                    src={t.img} 
+                    alt={t.name} 
+                    className="t-img" 
+                    style={S.tImg} 
+                    onError={(e) => { e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(t.name)}&background=020b18&color=00C9B1&size=512` }}
+                  />
                   <div style={{ ...S.tBar, background: t.grad }} />
                   <div style={{ ...S.tBadge, background: t.grad }}>{t.badge}</div>
                 </div>
@@ -308,7 +317,11 @@ export default function HorizontalScrollSection() {
                   <div style={S.skillsRow}>
                     {t.skills.slice(0, 2).map(sk => <span key={sk} style={{ ...S.skPill, color: t.color, borderColor: `${t.color}33` }}>{sk}</span>)}
                   </div>
-                  <div style={S.viewMore}>Batafsil ko'rish →</div>
+                  <div style={{ marginTop: 20 }}>
+                    <button style={{ ...S.cBtn, width: '100%', background: `${t.color}15`, color: t.color, borderColor: `${t.color}33`, padding: '12px' }}>
+                      PROFILNI KO'RISH
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -326,7 +339,9 @@ export default function HorizontalScrollSection() {
           <div ref={stTrkRef} style={S.track}>
             {TESTIMONIALS.map((t, i) => (
               <div key={i} className="glass" style={S.stCard}>
-                <div style={{ width: 64, height: 64, borderRadius: '50%', background: t.grad, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2.5rem', marginBottom: 16 }}>{t.emoji}</div>
+                <div style={{ width: 64, height: 64, borderRadius: '50%', background: t.grad, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
+                  <t.Icon style={{ color: '#fff', fontSize: '2rem' }} />
+                </div>
                 <h3 style={S.tName}>{t.name}</h3>
                 <p style={{ color: t.color, fontWeight: 800, marginBottom: 14 }}>{t.role}</p>
                 <p style={S.stQuote}><FaQuoteLeft /> {t.quote}</p>
@@ -527,12 +542,12 @@ export default function HorizontalScrollSection() {
 }
 
 const S = {
-  vSec: { padding: '120px 64px', position: 'relative', background: '#020b18' },
-  pSec: { height: '100vh', padding: '120px 0', overflow: 'hidden', position: 'relative' },
-  headCenter: { textAlign: 'center', marginBottom: 72, padding: '0 64px' },
-  tag: { display: 'inline-block', fontFamily: 'Orbitron', fontSize: 13, letterSpacing: 4, color: '#00C9B1', textTransform: 'uppercase', marginBottom: 18, borderLeft: '4px solid', paddingLeft: 12 },
-  h2: { fontFamily: 'Orbitron', fontSize: 'clamp(32px, 4vw, 56px)', fontWeight: 900, color: '#fff' },
-  sub: { color: '#6da9c8', fontSize: 18, fontFamily: 'Rajdhani', marginTop: 12 },
+  vSec: { padding: 'clamp(60px, 10vw, 120px) clamp(20px, 5vw, 64px)', position: 'relative', background: '#020b18' },
+  pSec: { height: '100vh', padding: 'clamp(40px, 6vh, 80px) 0', overflow: 'hidden', position: 'relative' },
+  headCenter: { textAlign: 'center', marginBottom: 'clamp(20px, 4vh, 40px)', padding: '0 clamp(20px, 5vw, 64px)' },
+  tag: { display: 'inline-block', fontFamily: 'Orbitron', fontSize: 'clamp(10px, 1.2vw, 12px)', letterSpacing: 4, color: '#00C9B1', textTransform: 'uppercase', marginBottom: 12, borderLeft: '4px solid', paddingLeft: 12 },
+  h2: { fontFamily: 'Orbitron', fontSize: 'clamp(24px, 4vw, 48px)', fontWeight: 900, color: '#fff', lineHeight: 1.1 },
+  sub: { color: '#6da9c8', fontSize: 'clamp(14px, 1.5vw, 16px)', fontFamily: 'Rajdhani', marginTop: 8 },
 
   vTrack: { maxWidth: 1200, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 40 },
   cRow: { display: 'flex', padding: '52px 48px', gap: 48, borderRadius: 32, alignItems: 'center', position: 'relative' },
@@ -551,18 +566,18 @@ const S = {
   projList: { display: 'flex', flexDirection: 'column', gap: 10 },
   projBtn: { display: 'flex', alignItems: 'center', gap: 10, padding: '10px 16px', borderRadius: 12, border: '1px solid', textDecoration: 'none', fontSize: 13, fontWeight: 700, fontFamily: 'Rajdhani', transition: 'all .3s' },
 
-  viewport: { padding: '0 64px', overflow: 'hidden' },
-  track: { display: 'flex', gap: 32, paddingRight: 200 },
-  tCard: { width: 'min(380px, 30vw)', flexShrink: 0, cursor: 'pointer', borderRadius: 32, overflow: 'hidden', paddingBottom: 32 },
-  tImgFrame: { height: 320, position: 'relative', overflow: 'hidden' },
+  viewport: { padding: '0 clamp(20px, 5vw, 64px)', overflow: 'hidden' },
+  track: { display: 'flex', gap: 'clamp(16px, 3vw, 24px)', paddingRight: '15vw' },
+  tCard: { width: 'clamp(260px, 22vw, 340px)', flexShrink: 0, cursor: 'pointer', borderRadius: 24, overflow: 'hidden', paddingBottom: 20 },
+  tImgFrame: { height: 'clamp(180px, 25vh, 260px)', position: 'relative', overflow: 'hidden' },
   tImg: { width: '100%', height: '100%', objectFit: 'cover', transition: 'transform .5s' },
   tBar: { position: 'absolute', bottom: 0, left: 0, right: 0, height: 4 },
   tBadge: { position: 'absolute', top: 20, right: 20, padding: '6px 16px', borderRadius: 20, color: '#020b18', fontSize: 11, fontWeight: 900, fontFamily: 'Orbitron' },
-  tInfo: { padding: '24px 24px 0', textAlign: 'center' },
-  tName: { fontFamily: 'Orbitron', fontSize: 20, fontWeight: 900, color: '#fff', marginBottom: 4 },
+  tInfo: { padding: '16px 20px 0', textAlign: 'center' },
+  tName: { fontFamily: 'Orbitron', fontSize: 'clamp(16px, 1.5vw, 19px)', fontWeight: 900, color: '#fff', marginBottom: 4 },
   skillsRow: { display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap' },
   skPill: { padding: '5px 15px', borderRadius: 10, fontSize: 11, fontWeight: 700, border: '1px solid', background: 'rgba(255,255,255,0.05)' },
-  viewMore: { marginTop: 20, fontSize: 12, color: '#00C9B1', fontWeight: 700, letterSpacing: 1 },
+  cBtn: { display: 'inline-flex', alignItems: 'center', gap: 10, padding: '10px 24px', borderRadius: 12, border: '1px solid', fontSize: 11, fontWeight: 800, fontFamily: 'Orbitron', letterSpacing: 1, cursor: 'pointer', transition: 'all .3s' },
 
   stCard: { width: 440, padding: 40, flexShrink: 0, borderRadius: 32 },
   stQuote: { color: '#aac', fontSize: 16, fontStyle: 'italic', lineHeight: 1.8 },
